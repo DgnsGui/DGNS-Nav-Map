@@ -1,6 +1,6 @@
 # 🌐 DGNS Nav Map v1.0
 
-[![DGNS Nav Map Demo](https://i.imgur.com/3yCb1XY.gif)](https://i.imgur.com/3yCb1XY.gif)
+[![DGNS Nav Map Demo][(https://s12.gifyu.com/images/b3yc1.gif)
 
 > **“Find places. Navigate your surroundings. Set markers and see where to go — intuitively!”**
 
