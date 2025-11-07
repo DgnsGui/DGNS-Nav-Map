@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    de7a084e-0c8e-4019-b3bb-0c01d3f61d75: 42f7e469-0e60-411c-90a9-992c8ad482f1/19a203377a8024bf4dcfe29da27a6f67/Data/PianoChord.mp3
+  Assets:
+    - !<FileAudioTrack/de7a084e-0c8e-4019-b3bb-0c01d3f61d75>
+      PackagePath: ""
+  SourceHash: 19a203377a8024bf4dcfe29da27a6f67
+  FileHash: 6928e7dede621ec76c104456ba2537c5
+  NativePackageItems:
+    []

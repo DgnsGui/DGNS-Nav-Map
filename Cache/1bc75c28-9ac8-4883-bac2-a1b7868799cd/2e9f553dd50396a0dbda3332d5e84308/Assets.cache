@@ -1,0 +1,12 @@
+- !<AssetCache>
+  AssetFiles:
+    883317fa-16db-49c3-a81f-3d6a54fe175b: 1bc75c28-9ac8-4883-bac2-a1b7868799cd/2e9f553dd50396a0dbda3332d5e84308/Data/DGNS Nav Map Previewretake.mp4
+  Assets:
+    - !<VideoTexture/883317fa-16db-49c3-a81f-3d6a54fe175b>
+      PackagePath: ""
+      AutoPlay: true
+      Volume: 1.000000
+  SourceHash: 2e9f553dd50396a0dbda3332d5e84308
+  FileHash: d80c0e8ab8f20606f83a78d30172a342
+  NativePackageItems:
+    []

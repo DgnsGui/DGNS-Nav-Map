@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    0527b11f-6dfb-421d-b031-d4f352848674: 69b16af5-c522-4064-92d1-3a766f66576d/43253ba164c56953286ec2ec5bd01d8d/Data/IconCam 2.png
+  Assets:
+    - !<FileTexture/0527b11f-6dfb-421d-b031-d4f352848674>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: 43253ba164c56953286ec2ec5bd01d8d
+  FileHash: aebacea162fa3baf2225e9db12862434
+  NativePackageItems:
+    []

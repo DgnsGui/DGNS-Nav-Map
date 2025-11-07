@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    64f77a7b-b156-48f3-ad9f-91cb946aee94: 111a12b9-a692-4a3c-9bc3-074139883a02/52e2243501b96e4f8ee815b8acf95da8/Data/IconPark.png
+  Assets:
+    - !<FileTexture/64f77a7b-b156-48f3-ad9f-91cb946aee94>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: 52e2243501b96e4f8ee815b8acf95da8
+  FileHash: e6f399e672563223f90a343dbdf6db39
+  NativePackageItems:
+    []

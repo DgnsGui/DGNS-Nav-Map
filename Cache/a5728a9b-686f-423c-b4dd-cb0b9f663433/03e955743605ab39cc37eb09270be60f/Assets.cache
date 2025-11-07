@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    046dbbed-3dde-4b04-8a7f-6d317209ae16: a5728a9b-686f-423c-b4dd-cb0b9f663433/03e955743605ab39cc37eb09270be60f/Data/QuestMarker.png
+  Assets:
+    - !<FileTexture/046dbbed-3dde-4b04-8a7f-6d317209ae16>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1536
+  SourceHash: 03e955743605ab39cc37eb09270be60f
+  FileHash: 97e4aa814b7fa9dc5a255400e159f191
+  NativePackageItems:
+    []

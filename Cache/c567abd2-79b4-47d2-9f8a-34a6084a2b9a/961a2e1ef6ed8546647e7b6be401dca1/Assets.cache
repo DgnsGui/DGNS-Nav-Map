@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    53563896-e2a2-4905-885f-e024637f23f3: c567abd2-79b4-47d2-9f8a-34a6084a2b9a/961a2e1ef6ed8546647e7b6be401dca1/Data/Sound2.mp3
+  Assets:
+    - !<FileAudioTrack/53563896-e2a2-4905-885f-e024637f23f3>
+      PackagePath: ""
+  SourceHash: 961a2e1ef6ed8546647e7b6be401dca1
+  FileHash: a3b59daf24e1bb2c229c85b4e8ce569d
+  NativePackageItems:
+    []

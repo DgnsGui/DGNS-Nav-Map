@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    b50baa29-d363-433a-ac77-9cb83a3119bf: c97f80af-919a-4a06-a8e8-ffa16dfae671/0d379ef895573370492ea8a6893da9f1/Data/Map Theme.mp3
+  Assets:
+    - !<FileAudioTrack/b50baa29-d363-433a-ac77-9cb83a3119bf>
+      PackagePath: ""
+  SourceHash: 0d379ef895573370492ea8a6893da9f1
+  FileHash: 4a19baa5da96185ec524108b744a1f3e
+  NativePackageItems:
+    []

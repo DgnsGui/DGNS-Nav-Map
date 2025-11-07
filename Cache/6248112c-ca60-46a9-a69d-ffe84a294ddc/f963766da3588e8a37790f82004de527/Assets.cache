@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    c28084fe-2069-4c34-a22e-cfc2f48bb360: 6248112c-ca60-46a9-a69d-ffe84a294ddc/f963766da3588e8a37790f82004de527/Data/BRITANICA-BLACK-EXPANDED.TTF
+  Assets:
+    - !<Font/c28084fe-2069-4c34-a22e-cfc2f48bb360>
+      PackagePath: ""
+  SourceHash: f963766da3588e8a37790f82004de527
+  FileHash: cec1ce381adcf964ca3a6ac123dc6104
+  NativePackageItems:
+    []

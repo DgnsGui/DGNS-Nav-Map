@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    a245eaf0-e872-465a-b1ce-3fa87e9781c6: a6fa78c8-3d38-4d01-8ea9-b79e3fffdc08/9996f7c2db836cc43ca4c0060a469614/Data/PrevTrack.png
+  Assets:
+    - !<FileTexture/a245eaf0-e872-465a-b1ce-3fa87e9781c6>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1080
+        Height: 1080
+  SourceHash: 9996f7c2db836cc43ca4c0060a469614
+  FileHash: c812721e19e88f3a4ae193112c6c76b2
+  NativePackageItems:
+    []

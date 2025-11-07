@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    0bd3fcde-09f5-4e87-9ade-6c347c391ba4: 7cd2e8c4-4fa5-47a8-ad50-e571e4fc52d7/ed1751a71c7988e332d287f20e8eee37/Data/NextTrack.png
+  Assets:
+    - !<FileTexture/0bd3fcde-09f5-4e87-9ade-6c347c391ba4>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1080
+        Height: 1080
+  SourceHash: ed1751a71c7988e332d287f20e8eee37
+  FileHash: 9e9e8f5726447cab838f1188c41fd1f4
+  NativePackageItems:
+    []

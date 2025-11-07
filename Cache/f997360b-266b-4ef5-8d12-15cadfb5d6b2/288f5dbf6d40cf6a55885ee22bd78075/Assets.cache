@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    6feed773-ea73-410c-b56d-1f34fa69d591: f997360b-266b-4ef5-8d12-15cadfb5d6b2/288f5dbf6d40cf6a55885ee22bd78075/Data/MOCKEJOE FONT.OTF
+  Assets:
+    - !<Font/6feed773-ea73-410c-b56d-1f34fa69d591>
+      PackagePath: ""
+  SourceHash: 288f5dbf6d40cf6a55885ee22bd78075
+  FileHash: 3d2f8061bc970af54433aa6fea83286b
+  NativePackageItems:
+    []

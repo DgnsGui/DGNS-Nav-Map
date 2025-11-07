@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    128d4cd2-86c4-446e-bc66-034b02e68757: 09ec4f7f-0296-4e11-9ddf-68f124573c2b/bb7ab0b0e1c422c8a30fef0af7ec1a96/Data/splashscreen.png
+  Assets:
+    - !<FileTexture/128d4cd2-86c4-446e-bc66-034b02e68757>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: bb7ab0b0e1c422c8a30fef0af7ec1a96
+  FileHash: ed56d2d3a28c588eec7be7756303a72a
+  NativePackageItems:
+    []

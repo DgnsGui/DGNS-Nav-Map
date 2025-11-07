@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    274050dc-4955-402b-91e5-60faec5ae2d8: 741bcb1a-5fb8-43f2-833f-57101c660525/cf6972e8c9410c97a86914d9d2440671/Data/Markericon.png
+  Assets:
+    - !<FileTexture/274050dc-4955-402b-91e5-60faec5ae2d8>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: cf6972e8c9410c97a86914d9d2440671
+  FileHash: dbf4f13b248fc65115f23fe67d16f4aa
+  NativePackageItems:
+    []

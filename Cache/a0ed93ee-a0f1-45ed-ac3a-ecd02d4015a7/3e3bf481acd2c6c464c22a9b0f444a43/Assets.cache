@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    de6381f5-3d8d-4f61-b4bb-ad1c6f955468: a0ed93ee-a0f1-45ed-ac3a-ecd02d4015a7/3e3bf481acd2c6c464c22a9b0f444a43/Data/Pause.png
+  Assets:
+    - !<FileTexture/de6381f5-3d8d-4f61-b4bb-ad1c6f955468>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1080
+        Height: 1080
+  SourceHash: 3e3bf481acd2c6c464c22a9b0f444a43
+  FileHash: 4f9bcd39e63e89dd9969201453d4c80a
+  NativePackageItems:
+    []

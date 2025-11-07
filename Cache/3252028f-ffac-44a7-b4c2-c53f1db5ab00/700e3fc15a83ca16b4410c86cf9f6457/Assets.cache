@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    83ed0e86-7195-4588-bfdd-b7929b77d7b6: 3252028f-ffac-44a7-b4c2-c53f1db5ab00/700e3fc15a83ca16b4410c86cf9f6457/Data/Iconprp.png
+  Assets:
+    - !<FileTexture/83ed0e86-7195-4588-bfdd-b7929b77d7b6>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: 700e3fc15a83ca16b4410c86cf9f6457
+  FileHash: 373d3617a18a53b8d9e07ee5aed0f061
+  NativePackageItems:
+    []

@@ -1,0 +1,56 @@
+- !<AssetImportMetadata/f2d862bf-2c58-411f-930b-8d0adc63ac25>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 2808571e-7416-4cc7-988d-7fe9c83b7d3c
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 2808571e-7416-4cc7-988d-7fe9c83b7d3c
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 25af389c-9ca1-40e2-9762-a60c4f19b889
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/25af389c-9ca1-40e2-9762-a60c4f19b889>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 6c4de3c6-e316-47a0-966b-0dff8318b5fd
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    animationDuration: false
+    enableDebugLogs: false
+    moveDistance: false
+    pinchButton: false
+    targetObject: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - pinchButton: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
+      targetObject: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      moveDistance: !<float> 10.000000
+      animationDuration: 0.500000
+      enableDebugLogs: false
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input AssignableType pinchButton {"hint":"Le PinchButton qui déclenche le déplacement"}'
+    - "// @input SceneObject targetObject {\"hint\":\"Objet à déplacer sur l'axe Z\"}"
+    - "// @input float moveDistance = 10 {\"hint\":\"Distance de déplacement sur l'axe Z (positive = vers l'avant)\"}"
+    - "// @input float animationDuration = 0.5 {\"hint\":\"Durée de l'animation en secondes\"}"
+    - '// @input bool enableDebugLogs {"hint":"Active les logs dans la console"}'

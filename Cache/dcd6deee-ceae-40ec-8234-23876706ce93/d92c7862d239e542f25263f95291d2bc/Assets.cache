@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    758736cf-a987-4f66-988f-6b9ea5616ef9: dcd6deee-ceae-40ec-8234-23876706ce93/d92c7862d239e542f25263f95291d2bc/Data/white_arrow.pvr
+  Assets:
+    - !<FileTexture/758736cf-a987-4f66-988f-6b9ea5616ef9>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 140
+        Height: 160
+  SourceHash: d92c7862d239e542f25263f95291d2bc
+  FileHash: db6461cc95ca5fa82e8e8df676d04905
+  NativePackageItems:
+    []

@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    880c912a-2a78-4c38-9f86-84f34df2b20e: c5d280e2-4472-4ed9-b4b2-419fb553da09/7c20eab64a2b2377b613c5822e5e7612/Data/restaurant.png
+  Assets:
+    - !<FileTexture/880c912a-2a78-4c38-9f86-84f34df2b20e>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: 7c20eab64a2b2377b613c5822e5e7612
+  FileHash: bb4c7f26567cf75f336151b484d59d6b
+  NativePackageItems:
+    []

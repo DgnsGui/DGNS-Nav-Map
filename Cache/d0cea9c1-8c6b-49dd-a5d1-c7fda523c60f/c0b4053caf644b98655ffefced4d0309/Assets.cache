@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    ca21fc2c-d309-4d21-bbd4-7ed373a0b2cc: d0cea9c1-8c6b-49dd-a5d1-c7fda523c60f/c0b4053caf644b98655ffefced4d0309/Data/OffscreenQuestMarker2.png
+  Assets:
+    - !<FileTexture/ca21fc2c-d309-4d21-bbd4-7ed373a0b2cc>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: c0b4053caf644b98655ffefced4d0309
+  FileHash: 7d325f2bc0dc310fa8f8563f4486f6e4
+  NativePackageItems:
+    []

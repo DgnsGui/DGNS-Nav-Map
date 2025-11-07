@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    463a8ea2-f77e-4fa8-9f17-33d725d778dc: 9c9ef752-506e-4a0c-85a5-ea6aafc45f3e/5083024391fc25981ffe566993cbe105/Data/SoundEffect2.mp3
+  Assets:
+    - !<FileAudioTrack/463a8ea2-f77e-4fa8-9f17-33d725d778dc>
+      PackagePath: ""
+  SourceHash: 5083024391fc25981ffe566993cbe105
+  FileHash: f06f0d0d0cd9096da7169cdfd978a602
+  NativePackageItems:
+    []

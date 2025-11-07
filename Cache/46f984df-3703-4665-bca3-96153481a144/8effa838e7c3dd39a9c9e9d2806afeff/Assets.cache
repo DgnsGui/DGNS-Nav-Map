@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    d46716e5-b2e4-4a58-8288-542f87f1ed16: 46f984df-3703-4665-bca3-96153481a144/8effa838e7c3dd39a9c9e9d2806afeff/Data/NAVMAP Main theme Zero-G Flight_NAVMAP MENU TRACK 2.1.wav
+  Assets:
+    - !<FileAudioTrack/d46716e5-b2e4-4a58-8288-542f87f1ed16>
+      PackagePath: ""
+  SourceHash: 8effa838e7c3dd39a9c9e9d2806afeff
+  FileHash: 7f31aa50fbafb01ce10f95b930d78965
+  NativePackageItems:
+    []

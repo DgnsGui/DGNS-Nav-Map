@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    064067c4-b798-42fb-96a6-ea31041c2665: 927732b8-a25e-4583-8166-58b201afd882/b90e818611129f5212b50193e8478943/Data/Iconovalnoimg.png
+  Assets:
+    - !<FileTexture/064067c4-b798-42fb-96a6-ea31041c2665>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: b90e818611129f5212b50193e8478943
+  FileHash: e90c184c49935d41ce69019fcb51aace
+  NativePackageItems:
+    []

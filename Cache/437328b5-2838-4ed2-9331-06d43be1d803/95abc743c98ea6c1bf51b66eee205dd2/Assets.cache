@@ -1,0 +1,112 @@
+- !<AssetCache>
+  AssetFiles:
+    d6e8727f-36e2-4ed8-b4ee-d62960ed7f2b: 437328b5-2838-4ed2-9331-06d43be1d803/95abc743c98ea6c1bf51b66eee205dd2/Data/Meshes/Sphere.mesh
+  Assets:
+    - !<ObjectPrefab/ff9009bd-fa29-419c-aeae-8b886038918a>
+      PackagePath: ""
+      objects:
+        - !<own> 2957bfdf-9461-49ee-bca6-fc9f350e3a45
+      LazyLoading: false
+      RetainAssets: true
+    - !<FileMesh/d6e8727f-36e2-4ed8-b4ee-d62960ed7f2b>
+      PackagePath: Meshes/Sphere
+      Info: !<MeshInfo>
+        Triangles: 608
+        Vertices: 1095
+        Blendshapes:
+          []
+        Joints: 0
+        AabbSize: {x: 15.964696, y: 8.118340, z: 3.932622}
+  SourceHash: 95abc743c98ea6c1bf51b66eee205dd2
+  FileHash: 5ff0f7693ac680568fd3266c8155aa1a
+  NativePackageItems:
+    []
+- !<SceneObject/2957bfdf-9461-49ee-bca6-fc9f350e3a45>
+  PrefabRemaps:
+    []
+  Name: Screenboundingbox6 4
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 100.000000, y: 100.000000, z: 100.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> f8c69097-cfa4-4c5c-b900-a15e7904dc37
+  Components:
+    []
+- !<AnimationPlayer/5171d36e-1494-46e9-a64e-eb2580a114b1>
+  PrefabRemaps:
+    []
+  Name: component_1
+  Enabled: true
+  Autoplay: true
+  ClipRangeType: Frames
+  AnimationClips:
+    []
+- !<RenderMeshVisual/5cfd3a13-dcff-4817-a165-ece40d18568a>
+  PrefabRemaps:
+    []
+  Name: Sphere
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    []
+  Mesh: !<reference> d6e8727f-36e2-4ed8-b4ee-d62960ed7f2b
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
+- !<SceneObject/9ad2819d-22fc-4574-a333-93d3be98cd0a>
+  PrefabRemaps:
+    []
+  Name: Scene
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> ee02ea42-4d90-4cdf-a8ef-172d76cb8842
+  Components:
+    - !<own> 5171d36e-1494-46e9-a64e-eb2580a114b1
+- !<SceneObject/ee02ea42-4d90-4cdf-a8ef-172d76cb8842>
+  PrefabRemaps:
+    []
+  Name: Sphere
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 5cfd3a13-dcff-4817-a165-ece40d18568a
+- !<SceneObject/f8c69097-cfa4-4c5c-b900-a15e7904dc37>
+  PrefabRemaps:
+    []
+  Name: Scenes
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> 9ad2819d-22fc-4574-a333-93d3be98cd0a
+  Components:
+    []

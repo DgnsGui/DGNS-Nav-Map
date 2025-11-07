@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    783b0976-6ffa-4d94-ad4c-b912c6a397a0: 7e4c217f-023a-4cfe-ab29-7a55bf3d0302/29ad31e76a1ec92847067c3c7c8e581d/Data/cofee.png
+  Assets:
+    - !<FileTexture/783b0976-6ffa-4d94-ad4c-b912c6a397a0>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: 29ad31e76a1ec92847067c3c7c8e581d
+  FileHash: 5155cc75d3dd018debc54c58e8645369
+  NativePackageItems:
+    []

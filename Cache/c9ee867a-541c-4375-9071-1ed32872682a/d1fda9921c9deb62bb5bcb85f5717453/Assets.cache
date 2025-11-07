@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    d1ca8ec0-54d6-418b-93dc-32d5c7ffed54: c9ee867a-541c-4375-9071-1ed32872682a/d1fda9921c9deb62bb5bcb85f5717453/Data/Books.png
+  Assets:
+    - !<FileTexture/d1ca8ec0-54d6-418b-93dc-32d5c7ffed54>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: d1fda9921c9deb62bb5bcb85f5717453
+  FileHash: f325db722814cd1910df2582d1eebfaa
+  NativePackageItems:
+    []

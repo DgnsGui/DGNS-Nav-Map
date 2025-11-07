@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    7b1b2b86-d8a5-4f78-b9bf-8aa318447528: 9e44b5f9-9d38-43ea-afad-6a11fa7c5cf2/1cbefc8282aa8c74a6181adadbc053e9/Data/Germany (1).mp3
+  Assets:
+    - !<FileAudioTrack/7b1b2b86-d8a5-4f78-b9bf-8aa318447528>
+      PackagePath: ""
+  SourceHash: 1cbefc8282aa8c74a6181adadbc053e9
+  FileHash: 3b266adbb3c3ad808d6cfd1804f990e0
+  NativePackageItems:
+    []

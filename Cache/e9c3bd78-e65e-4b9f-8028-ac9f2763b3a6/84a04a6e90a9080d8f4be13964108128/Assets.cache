@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    82003916-5cdc-4df9-89f6-171d7fe6bb49: "e9c3bd78-e65e-4b9f-8028-ac9f2763b3a6/84a04a6e90a9080d8f4be13964108128/Data/Generated Image September 09, 2025 - 1_52PM.png"
+  Assets:
+    - !<FileTexture/82003916-5cdc-4df9-89f6-171d7fe6bb49>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: 84a04a6e90a9080d8f4be13964108128
+  FileHash: 1b48d712891d26462f1523588fbc8537
+  NativePackageItems:
+    []

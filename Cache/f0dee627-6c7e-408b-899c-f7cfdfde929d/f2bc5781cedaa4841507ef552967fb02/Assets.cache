@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    11febd6f-2f84-4746-942d-d9cfc4ce9406: f0dee627-6c7e-408b-899c-f7cfdfde929d/f2bc5781cedaa4841507ef552967fb02/Data/NAVMAP Main theme Satellite Drift_NAV MAP MENU TRACK 3.5.wav
+  Assets:
+    - !<FileAudioTrack/11febd6f-2f84-4746-942d-d9cfc4ce9406>
+      PackagePath: ""
+  SourceHash: f2bc5781cedaa4841507ef552967fb02
+  FileHash: 9a34a05de9b811a55a3be3a207f38577
+  NativePackageItems:
+    []

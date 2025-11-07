@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    5049b7a3-1827-444c-ba59-e50b348fb815: e5557422-b64b-4a0f-ad06-bc535d6409de/5c6e02f61adfccc0cb207c44edcbda32/Data/CyberMedaillon (1) 2.mp3
+  Assets:
+    - !<FileAudioTrack/5049b7a3-1827-444c-ba59-e50b348fb815>
+      PackagePath: ""
+  SourceHash: 5c6e02f61adfccc0cb207c44edcbda32
+  FileHash: e96201d4c16a2f7df75f0eb4bc0e902d
+  NativePackageItems:
+    []

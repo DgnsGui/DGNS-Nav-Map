@@ -1,0 +1,12 @@
+- !<AssetCache>
+  AssetFiles:
+    076a4cb0-b7b7-481e-9b35-2d4c53a7e608: e1011cd4-8c9e-42d4-9f69-4a8a96030fe4/e29dd0331e3c712c37a978a3313a4d6e/Data/DGNS Nav Mapretake.mp4
+  Assets:
+    - !<VideoTexture/076a4cb0-b7b7-481e-9b35-2d4c53a7e608>
+      PackagePath: ""
+      AutoPlay: true
+      Volume: 1.000000
+  SourceHash: e29dd0331e3c712c37a978a3313a4d6e
+  FileHash: 30ab2d2ec7b1f950520407568a761f94
+  NativePackageItems:
+    []

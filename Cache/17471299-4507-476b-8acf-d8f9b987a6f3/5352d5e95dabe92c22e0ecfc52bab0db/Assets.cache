@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    cdcbb87c-5a64-4091-8a89-81f1cd4ec7d8: 17471299-4507-476b-8acf-d8f9b987a6f3/5352d5e95dabe92c22e0ecfc52bab0db/Data/RITAFUREY BOLD ITALIC.OTF
+  Assets:
+    - !<Font/cdcbb87c-5a64-4091-8a89-81f1cd4ec7d8>
+      PackagePath: ""
+  SourceHash: 5352d5e95dabe92c22e0ecfc52bab0db
+  FileHash: 4e64ee20fb4c5f1531f316289a31644d
+  NativePackageItems:
+    []

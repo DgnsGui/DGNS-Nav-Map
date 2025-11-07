@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    7f4218a3-ea5f-46d9-ac68-6a9ef701d21e: fdf5f120-4f45-450a-82fb-f53b4c5cdc49/7ee255827a6331200f6f6504c2a9f74b/Data/Recherche1.png
+  Assets:
+    - !<FileTexture/7f4218a3-ea5f-46d9-ac68-6a9ef701d21e>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1920
+        Height: 1920
+  SourceHash: 7ee255827a6331200f6f6504c2a9f74b
+  FileHash: 34abb7ff4ec1835d00c4c97492ec3571
+  NativePackageItems:
+    []

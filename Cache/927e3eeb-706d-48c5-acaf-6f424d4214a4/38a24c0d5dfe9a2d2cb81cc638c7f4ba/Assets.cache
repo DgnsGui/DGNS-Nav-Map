@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    6f2f8f4e-505c-4218-9e81-086a222bfcaf: 927e3eeb-706d-48c5-acaf-6f424d4214a4/38a24c0d5dfe9a2d2cb81cc638c7f4ba/Data/InViewQuestMarker.png
+  Assets:
+    - !<FileTexture/6f2f8f4e-505c-4218-9e81-086a222bfcaf>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 128
+        Height: 128
+  SourceHash: 38a24c0d5dfe9a2d2cb81cc638c7f4ba
+  FileHash: a912858e4cdf5984b2029b5c79d8dafa
+  NativePackageItems:
+    []

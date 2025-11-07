@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    6844e925-e163-4fa6-a5c9-bd30699a82a6: 6d5dddf3-069c-4755-8560-15f5fede65d9/f61c620ff10708a1ea6fe2be2e0422ae/Data/Map Outline.png
+  Assets:
+    - !<FileTexture/6844e925-e163-4fa6-a5c9-bd30699a82a6>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 488
+        Height: 472
+  SourceHash: f61c620ff10708a1ea6fe2be2e0422ae
+  FileHash: 8c3304cc836e8d2b8fc638513cb9f035
+  NativePackageItems:
+    []

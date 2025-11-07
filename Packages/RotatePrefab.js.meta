@@ -1,0 +1,52 @@
+- !<AssetImportMetadata/779f0ec6-4b4f-4987-a8de-175396bf53ce>
+  ImportedAssetIds:
+    JavaScriptAsset: !<reference> 00226e29-81e9-4c0e-bedf-e9003dd13749
+  ImporterName: JavaScriptAssetImporter
+  PrimaryAsset: !<reference> 00226e29-81e9-4c0e-bedf-e9003dd13749
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    JavaScriptAsset: !<own> 0508098b-f937-406c-9e02-61078b61a93d
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<ScriptAssetData/0508098b-f937-406c-9e02-61078b61a93d>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: f4f3af7c-00c2-484c-af18-e745f7f495c9
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    enableXRotation: false
+    enableYRotation: false
+    enableZRotation: false
+    xRotationSpeed: false
+    yRotationSpeed: false
+    zRotationSpeed: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - enableXRotation: false
+      xRotationSpeed: !<float> 30.000000
+      enableYRotation: true
+      yRotationSpeed: !<float> 30.000000
+      enableZRotation: false
+      zRotationSpeed: !<float> 30.000000
+  ScriptTypes:
+    -
+      {}

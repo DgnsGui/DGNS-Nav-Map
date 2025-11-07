@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    b64cb0c9-7419-4b0a-a2d4-22481f9f3f1d: fb283139-e51b-4dd9-a296-bbde86dacb14/0271c5bd49695f6fb017dac92eedc195/Data/NAVMAP Main theme Atmospheric Orbital_NAVMAP MENU TRACK 1.wav
+  Assets:
+    - !<FileAudioTrack/b64cb0c9-7419-4b0a-a2d4-22481f9f3f1d>
+      PackagePath: ""
+  SourceHash: 0271c5bd49695f6fb017dac92eedc195
+  FileHash: 63f9ef78b5bd16c769a3f682510caac9
+  NativePackageItems:
+    []

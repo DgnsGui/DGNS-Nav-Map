@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    d0894253-da17-4a81-92c6-57a8cafb6114: eb5d7070-3187-3d78-c89b-daa6aeaf63f7/d17fc21ce3d2b8c5ebac02a074b0f5e7/Data/refl_gold.jpg
+  Assets:
+    - !<FileTexture/d0894253-da17-4a81-92c6-57a8cafb6114>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 64
+        Height: 64
+  SourceHash: d17fc21ce3d2b8c5ebac02a074b0f5e7
+  FileHash: b3bbe8a4723d5e6ba908fbef9dbf2c38
+  NativePackageItems:
+    []

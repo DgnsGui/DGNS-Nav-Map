@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    9752a78a-ea8a-4bd0-afe3-c74bfe1ddece: 34554165-bc90-4f1b-ade8-d42a68bcbbfc/074fe3481cea6bb11c1620e56ff52a2d/Data/BGIcon.png
+  Assets:
+    - !<FileTexture/9752a78a-ea8a-4bd0-afe3-c74bfe1ddece>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: 074fe3481cea6bb11c1620e56ff52a2d
+  FileHash: d52f51f2683c47450c547ca44642228b
+  NativePackageItems:
+    []

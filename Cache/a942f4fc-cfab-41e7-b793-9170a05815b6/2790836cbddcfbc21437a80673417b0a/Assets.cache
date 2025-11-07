@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    6a5c8836-10f9-4da2-bb1a-a0bc3bd1827e: a942f4fc-cfab-41e7-b793-9170a05815b6/2790836cbddcfbc21437a80673417b0a/Data/A4SPEED-BOLD.TTF
+  Assets:
+    - !<Font/6a5c8836-10f9-4da2-bb1a-a0bc3bd1827e>
+      PackagePath: ""
+  SourceHash: 2790836cbddcfbc21437a80673417b0a
+  FileHash: 65f0619c24b1b8f2cbbfa47b0a694b0a
+  NativePackageItems:
+    []

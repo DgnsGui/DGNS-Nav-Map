@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    aca466cf-f243-4b1e-a5e3-dc7f8745049e: 335f35d5-f939-4a16-9ec5-1e743aeb7cae/36a26d98b6ac41a7fb05f6e195dfeb28/Data/IconAirplane.png
+  Assets:
+    - !<FileTexture/aca466cf-f243-4b1e-a5e3-dc7f8745049e>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: 36a26d98b6ac41a7fb05f6e195dfeb28
+  FileHash: d8e2ee50dd9e6b5278c263bc853fa256
+  NativePackageItems:
+    []

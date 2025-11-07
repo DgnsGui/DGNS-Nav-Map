@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    6fff28ff-e0f9-424a-999a-47886c150950: 6f0b3095-df66-42f6-9c11-97a280ed584e/12453759963a6911293bb6b6fbe0acc3/Data/iconSkate.png
+  Assets:
+    - !<FileTexture/6fff28ff-e0f9-424a-999a-47886c150950>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: 12453759963a6911293bb6b6fbe0acc3
+  FileHash: dd7b065acc6b8ae0c9f8aefe14977939
+  NativePackageItems:
+    []

@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    7fa5d433-7eda-4f36-857e-302116611086: "28f1aa3f-2dfd-40a9-a5a8-720c931246df/fce400f7a9c2d29a367feacbfdcf195e/Data/Generated Image September 06, 2025 - 2_46PM.jpeg"
+  Assets:
+    - !<FileTexture/7fa5d433-7eda-4f36-857e-302116611086>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1280
+        Height: 800
+  SourceHash: fce400f7a9c2d29a367feacbfdcf195e
+  FileHash: 43d2868c324b5a0b8a80cf1eca1e061b
+  NativePackageItems:
+    []

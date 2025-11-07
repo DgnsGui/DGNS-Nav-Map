@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    d6101f62-7635-4011-9623-c43f412d2a96: 9a7dfa17-b812-475f-b7c9-047f177383f2/f96d1ef7e71c0624bbe3ca47180994a9/Data/shrink.png
+  Assets:
+    - !<FileTexture/d6101f62-7635-4011-9623-c43f412d2a96>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 96
+        Height: 96
+  SourceHash: f96d1ef7e71c0624bbe3ca47180994a9
+  FileHash: 000c90ba9514879bdb32413a5abba413
+  NativePackageItems:
+    []

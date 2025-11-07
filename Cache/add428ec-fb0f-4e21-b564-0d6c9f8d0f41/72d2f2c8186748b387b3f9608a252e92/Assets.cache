@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    7dbbbd73-e13f-4882-874f-014c2dc3c159: add428ec-fb0f-4e21-b564-0d6c9f8d0f41/72d2f2c8186748b387b3f9608a252e92/Data/Rotatewhite.png
+  Assets:
+    - !<FileTexture/7dbbbd73-e13f-4882-874f-014c2dc3c159>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: 72d2f2c8186748b387b3f9608a252e92
+  FileHash: 7acef03a0d1a3d2f7da04da79a5772cb
+  NativePackageItems:
+    []

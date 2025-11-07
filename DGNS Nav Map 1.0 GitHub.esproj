@@ -1,0 +1,43 @@
+studioVersion:
+  major: 5
+  minor: 15
+  patch: 0
+  build: 25101318
+  type: Public
+coreVersion: 330
+clientVersion: 13.60
+updateCheckpoint: 76
+sceneId: 0a1ccb1a-fe88-4fbb-9883-e3af3c75fd99
+metaInfo:
+  hints:
+    []
+  tags:
+    []
+  lensName: DGNS Nav Map
+  lensDescriptors:
+    []
+  lensApplicability:
+    - Front
+    - Back
+  lensClientCompatibilities:
+    - Spectacles
+  platformBundlesEnabled: false
+  iconHash: 972f93ea75eeaae2d81ad3b88cea2edf
+  videoPreviewHash: ""
+  fromTemplateName: Outdoor Navigation
+  fromTemplateUrl: Lens Studio 5.12.1.25080420
+  activationCamera: Front
+  sourceMapEnabled: false
+  usingMinClientVersions: false
+  androidMinClientVersion:
+    major: 0
+    minor: 0
+    patch: 0
+    build: 0
+  iOSMinClientVersion:
+    major: 0
+    minor: 0
+    patch: 0
+    build: 0
+  documentId: c5126752-d091-4013-af6b-2c2ce57acbd6
+  originalDocumentId: ad926f4c-4b98-43f5-9b64-f2402a7a6cd7

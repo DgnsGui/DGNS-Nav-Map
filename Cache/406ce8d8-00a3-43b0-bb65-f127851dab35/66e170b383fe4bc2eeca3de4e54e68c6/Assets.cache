@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    6a62e64d-ba56-43d2-9e1e-4eb604d87552: "406ce8d8-00a3-43b0-bb65-f127851dab35/66e170b383fe4bc2eeca3de4e54e68c6/Data/Generated Image September 09, 2025 - 1_46PM.png"
+  Assets:
+    - !<FileTexture/6a62e64d-ba56-43d2-9e1e-4eb604d87552>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: 66e170b383fe4bc2eeca3de4e54e68c6
+  FileHash: d6456bdc4dbefb2ae19462af0acaf210
+  NativePackageItems:
+    []

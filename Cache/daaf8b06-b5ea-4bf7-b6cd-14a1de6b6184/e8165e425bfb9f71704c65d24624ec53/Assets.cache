@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    adcae0d2-7f2a-42e1-9f4c-35327486c83f: daaf8b06-b5ea-4bf7-b6cd-14a1de6b6184/e8165e425bfb9f71704c65d24624ec53/Data/IconBarber.png
+  Assets:
+    - !<FileTexture/adcae0d2-7f2a-42e1-9f4c-35327486c83f>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: e8165e425bfb9f71704c65d24624ec53
+  FileHash: 31b1cca68ac533fdacc67efac8c9ede9
+  NativePackageItems:
+    []

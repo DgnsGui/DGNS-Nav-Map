@@ -1,0 +1,56 @@
+- !<AssetImportMetadata/44d0a306-5011-4e7f-9dd6-0b364547c81e>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> bf5eefac-2c2d-4fd4-b402-6e215347d447
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> bf5eefac-2c2d-4fd4-b402-6e215347d447
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> d19a22a9-de33-4c9a-877c-5c263864bc96
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/d19a22a9-de33-4c9a-877c-5c263864bc96>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 6fe1a022-3c17-426c-8a1d-467db3071612
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    animationDuration: false
+    enableDebugLogs: false
+    hiddenPositionY: false
+    responseContainer: false
+    visiblePositionY: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - responseContainer: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      hiddenPositionY: !<float> 0.000000
+      visiblePositionY: !<float> 15.000000
+      animationDuration: 0.500000
+      enableDebugLogs: true
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - "// @input SceneObject responseContainer {\"hint\":\"L'objet Container Frame de la réponse AI (le deuxième ovale)\"}"
+    - "// @input float hiddenPositionY {\"hint\":\"Position Y quand l'ovale est caché\"}"
+    - "// @input float visiblePositionY = 15 {\"hint\":\"Position Y quand l'ovale est visible\"}"
+    - "// @input float animationDuration = 0.5 {\"hint\":\"Durée de l'animation (secondes)\"}"
+    - '// @input bool enableDebugLogs = true {"hint":"Active les logs détaillés"}'

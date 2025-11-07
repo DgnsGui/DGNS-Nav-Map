@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    1d2eb0ed-a4d6-4dcf-ba30-22c5d30b30ab: 08070cd5-10db-4f47-9682-712d393303a6/571927bbf96e4cbee6a3f620c01ffeb8/Data/REALITY HYPER REGULAR.TTF
+  Assets:
+    - !<Font/1d2eb0ed-a4d6-4dcf-ba30-22c5d30b30ab>
+      PackagePath: ""
+  SourceHash: 571927bbf96e4cbee6a3f620c01ffeb8
+  FileHash: 8ab9a89a7cc464eff9a07a834aa6664a
+  NativePackageItems:
+    []

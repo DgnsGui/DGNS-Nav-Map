@@ -1,0 +1,12 @@
+- !<AssetCache>
+  AssetFiles:
+    5bcb8e32-aae3-4ea4-8449-ae4707df1812: bf25c86a-1da8-4a39-b6c8-3f50fb9fb565/49a9779264f15a91dd1ed0504dd1256d/Data/DGNS Nav Map.mp4
+  Assets:
+    - !<VideoTexture/5bcb8e32-aae3-4ea4-8449-ae4707df1812>
+      PackagePath: ""
+      AutoPlay: true
+      Volume: 1.000000
+  SourceHash: 49a9779264f15a91dd1ed0504dd1256d
+  FileHash: 52f0a90683b4a70a0f1ec6ea485be0fa
+  NativePackageItems:
+    []

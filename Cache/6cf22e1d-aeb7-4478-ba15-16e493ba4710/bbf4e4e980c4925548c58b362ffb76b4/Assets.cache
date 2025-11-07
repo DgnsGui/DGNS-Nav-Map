@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    82f9e2d9-0b9f-4ad4-848d-1101fcf51a22: 6cf22e1d-aeb7-4478-ba15-16e493ba4710/bbf4e4e980c4925548c58b362ffb76b4/Data/TDU2 - Map Music.mp3
+  Assets:
+    - !<FileAudioTrack/82f9e2d9-0b9f-4ad4-848d-1101fcf51a22>
+      PackagePath: ""
+  SourceHash: bbf4e4e980c4925548c58b362ffb76b4
+  FileHash: 9932c4d9a99c75875c7f6257de4dd902
+  NativePackageItems:
+    []

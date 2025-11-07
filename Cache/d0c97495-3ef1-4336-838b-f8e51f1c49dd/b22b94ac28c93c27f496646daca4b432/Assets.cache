@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    6d18dfaf-0e43-487c-8f5f-ee716f15d0d8: d0c97495-3ef1-4336-838b-f8e51f1c49dd/b22b94ac28c93c27f496646daca4b432/Data/Rotate.png
+  Assets:
+    - !<FileTexture/6d18dfaf-0e43-487c-8f5f-ee716f15d0d8>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: b22b94ac28c93c27f496646daca4b432
+  FileHash: 429a2e8fe1e7c272b83784a12ab315bf
+  NativePackageItems:
+    []

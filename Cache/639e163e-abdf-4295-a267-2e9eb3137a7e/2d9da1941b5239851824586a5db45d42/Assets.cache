@@ -1,0 +1,13 @@
+- !<AssetCache>
+  AssetFiles:
+    6d974767-3380-4d95-af02-a5cdbc3d3def: 639e163e-abdf-4295-a267-2e9eb3137a7e/2d9da1941b5239851824586a5db45d42/Data/IconDrinks.png
+  Assets:
+    - !<FileTexture/6d974767-3380-4d95-af02-a5cdbc3d3def>
+      PackagePath: ""
+      FileInfo: !<FileTextureInfo>
+        Width: 1024
+        Height: 1024
+  SourceHash: 2d9da1941b5239851824586a5db45d42
+  FileHash: e31bdca17254e34b612d2ed1294edc94
+  NativePackageItems:
+    []
