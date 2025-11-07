@@ -1,12 +1,12 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)
 ![Platform](https://img.shields.io/badge/Platform-Snap_Spectacles24-black.svg)
-![Tech](https://img.shields.io/badge/Powered_by-Lens_Studio_5.10-yellow.svg)
+![Tech](https://img.shields.io/badge/Powered_by-Lens_Studio_5.15-yellow.svg)
 
 <h1 align="center">DGNS Nav Map - A Navigation experience for Spectacles</h1>
 
 <p align="center">
-  <em>DGNS Nav Map is an interactive navigation Lens built for **Snapchat Spectacles (2024) using Lens Studio 5.12.  
+  <em>DGNS Nav Map is an interactive navigation Lens built for **Snapchat Spectacles (2024) using Lens Studio 5.15.  
 It provides a futuristic way to explore your surroundings, find nearby places, drop map pins, and interact with an AI-powered navigation assistant, all within augmented reality.</em>
 </p>
 
