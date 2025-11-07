@@ -1,93 +1,75 @@
-🌐 DGNS Nav Map v1.0
+# 🌐 DGNS Nav Map v1.0
 
+[![DGNS Nav Map Demo](https://i.imgur.com/3yCb1XY.gif)](https://i.imgur.com/3yCb1XY.gif)
 
-🕶️ Overview
+> **“Find places. Navigate your surroundings. Set markers and see where to go — intuitively!”**
 
-DGNS Nav Map is an interactive navigation Lens built for Spectacles (2024) using Lens Studio 5.12.
-It provides a futuristic way to explore your surroundings — find nearby places, drop map pins, and interact with an AI-powered navigation assistant — all within augmented reality.
+DGNS Nav Map is an **interactive navigation Lens** built for **Snapchat Spectacles (2024)** using **Lens Studio 5.12**.  
+It provides a futuristic way to explore your surroundings — find nearby places, drop map pins, and interact with an **AI-powered navigation assistant** — all within augmented reality.
 
-“Find places. Navigate your surroundings. Set markers and see where to go — intuitively!”
+---
 
-https://s12.gifyu.com/images/b3yc1.gif
+## 🕶️ Overview
 
-✨ Features
+https://www.youtube.com/watch?v=xyz123 (optionnel : remplace par ta vidéo démo si tu en as une)
 
--🗺️ Interactive Map Navigation — Pan and zoom using pinch gestures, designed for immersive AR exploration.
--📍 Custom Map Pins — Tap or pinch to drop and remove pins directly on the map.
--🤖 AI Map Assistant — Ask AI for help to find places or get directions.
--🎶 Built-in Music Player — Play your personal soundtrack while exploring (powered by SimpleMusicPlayer.ts)
--🎯 Quest & Landmark Markers — Visualize dynamic waypoints through QuestMarker.ts.
--🧭 Smart Centering System — Automatically re-centers the map when zooming or rotating (MapController.ts).
--🌍 Snap Places API Integration — Access real nearby locations via SnapPlacesProvider.ts.
--🧩 Architecture
+An immersive AR navigation experience combining:
+- Real-time Snap Places API
+- Gesture-based map controls
+- AI conversation assistant
+- Custom pins & quest markers
+- Built-in ambient music player
 
+---
 
-DGNS Nav Map is organized into modular TypeScript components:
+## ✨ Features
 
-Script	Description
-AIMapAssistant.ts	Handles AI queries and conversational map assistance.
-SnapPlacesProvider.ts	Integrates Snap’s Places API to display real-world locations.
-MapComponent.ts	Core map rendering and state management component.
-MapController.ts	Controls map manipulation: zoom, drag, rotate, and re-centering.
-MapPin.ts	Defines and manages interactive pins on the map.
-QuestMarker.ts	Displays quest-like markers and objectives in AR.
-SimpleMusicPlayer.ts	Lightweight UI for audio playback within the Lens.
+- 🗺️ **Interactive Map Navigation** — Pan, zoom, and rotate using pinch & drag gestures  
+- 📍 **Custom Map Pins** — Tap or pinch to drop/remove pins directly on the map  
+- 🤖 **AI Map Assistant** — Ask for directions, places, or tips in natural language  
+- 🎶 **Built-in Music Player** — Play your soundtrack while exploring (`SimpleMusicPlayer.ts`)  
+- 🎯 **Quest & Landmark Markers** — Dynamic AR waypoints (`QuestMarker.ts`)  
+- 🧭 **Smart Centering System** — Auto-recenter on zoom/rotate (`MapController.ts`)  
+- 🌍 **Snap Places API Integration** — Real nearby locations (`SnapPlacesProvider.ts`)
 
-🧭 How to Use
+---
 
-Navigate the map using pinch gestures.
-Tap or pinch to add a Pin on the map.
-Tap “Places” to show nearby locations fetched via Snap Places API.
-Tap “Clear Pins” to remove all markers.
-Press the Music icon 🎵 to toggle the in-Lens music player.
+## 🧩 Architecture
 
+Modular TypeScript components:
 
-🛠️ Installation & Setup
+| Script                  | Description                                      |
+|-------------------------|--------------------------------------------------|
+| `AIMapAssistant.ts`     | AI queries & conversational navigation helper    |
+| `SnapPlacesProvider.ts` | Snap Places API → real-world location display    |
+| `MapComponent.ts`       | Core map rendering & state management            |
+| `MapController.ts`      | Zoom, drag, rotate, recenter logic               |
+| `MapPin.ts`             | Interactive pin creation & management            |
+| `QuestMarker.ts`        | Quest/objective AR markers                       |
+| `SimpleMusicPlayer.ts`  | Lightweight in-Lens audio player UI              |
 
-Open the project in Lens Studio 5.12 or later.
-Make sure Spectacles 2024 are selected as the target device.
+---
 
-Ensure the following assets are included:
+## 🧭 How to Use
 
-Scripts/AIMapAssistant.ts
-Scripts/SnapPlacesProvider.ts
-Scripts/MapController.ts
-Scripts/MapPin.ts
-Scripts/QuestMarker.ts
-Scripts/SimpleMusicPlayer.ts
-Build and preview on your Spectacles.
+1. **Navigate** → Pinch to zoom, drag to pan, two-finger rotate  
+2. **Drop a Pin** → Tap or pinch anywhere on the map  
+3. **Find Places** → Tap **"Places"** button → see real locations around you  
+4. **Clear Pins** → Tap **"Clear Pins"**  
+5. **Music** → Tap 🎵 to toggle the ambient player  
 
+---
 
-🎵 Credits
+## 🛠️ Installation & Setup
 
-Lens Design & Code: GuillaumeDGNS (Built on top of Outdoor Navigation Sample)
-
-Original Soundtrack: PaulMX
-
-
-📜 Changelog
-
-v1.0
-
-Fixed map scroll reset and recenter logic (MapController.ts)
-Improved rotation and alignment (MapManipulation.ts)
-New visual design: updated pins, UI shell, and overall style
-Added Ask AI functionality
-Optimized zoom responsiveness
-
-⚠️ Known Issues
-
-Interface resizing is not supported yet
-Pin labels may display outside the clam-shaped map boundary
-
-
-🔮 Future Improvements
-Resizable and adaptive interface
-Place filters with toggle buttons
-Mini-map mode, GPS arrow, hand tracking, and visual skins
-Search bar for specific locations
-
-🧠 Project Vision
-
-DGNS Nav Map was designed as both an artistic experiment and a functional navigation tool — blending creativity, AI, and real-world mapping into one intuitive AR experience.
-Built with love for urban explorers and creative technologists.
+```bash
+1. Open in Lens Studio 5.12+
+2. Target device: Spectacles (2024)
+3. Required scripts (must be in /Scripts/):
+   ├── AIMapAssistant.ts
+   ├── SnapPlacesProvider.ts
+   ├── MapController.ts
+   ├── MapPin.ts
+   ├── QuestMarker.ts
+   └── SimpleMusicPlayer.ts
+4. Build → Preview on Spectacles
