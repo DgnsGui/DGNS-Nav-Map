@@ -8,17 +8,18 @@ It provides a futuristic way to explore your surroundings — find nearby places
 
 “Find places. Navigate your surroundings. Set markers and see where to go — intuitively!”
 
+https://s12.gifyu.com/images/b3yc1.gif
 
 ✨ Features
 
-🗺️ Interactive Map Navigation — Pan and zoom using pinch gestures, designed for immersive AR exploration.
-📍 Custom Map Pins — Tap or pinch to drop and remove pins directly on the map.
-🤖 AI Map Assistant — Ask AI for help to find places or get directions.
-🎶 Built-in Music Player — Play your personal soundtrack while exploring (powered by SimpleMusicPlayer.ts)
-🎯 Quest & Landmark Markers — Visualize dynamic waypoints through QuestMarker.ts.
-🧭 Smart Centering System — Automatically re-centers the map when zooming or rotating (MapController.ts).
-🌍 Snap Places API Integration — Access real nearby locations via SnapPlacesProvider.ts.
-🧩 Architecture
+-🗺️ Interactive Map Navigation — Pan and zoom using pinch gestures, designed for immersive AR exploration.
+-📍 Custom Map Pins — Tap or pinch to drop and remove pins directly on the map.
+-🤖 AI Map Assistant — Ask AI for help to find places or get directions.
+-🎶 Built-in Music Player — Play your personal soundtrack while exploring (powered by SimpleMusicPlayer.ts)
+-🎯 Quest & Landmark Markers — Visualize dynamic waypoints through QuestMarker.ts.
+-🧭 Smart Centering System — Automatically re-centers the map when zooming or rotating (MapController.ts).
+-🌍 Snap Places API Integration — Access real nearby locations via SnapPlacesProvider.ts.
+-🧩 Architecture
 
 
 DGNS Nav Map is organized into modular TypeScript components:
