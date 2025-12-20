@@ -5,6 +5,8 @@ import { MapController } from "./MapController";
 import { MapPin } from "./MapPin";
 import { calculateZoomOffset, findScriptComponent, MapParameter } from "./MapUtils";
 
+require('LensStudio:ProcessedLocationModule')
+
 @component
 export class MapComponent extends BaseScriptComponent {
   @input
