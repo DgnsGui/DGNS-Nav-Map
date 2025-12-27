@@ -65,7 +65,7 @@ Before you begin, make sure you have the following installed:
 
 ##Install
 
-- **git clone https://github.com/DgnsGui/DGNS-Nav-Map
+- git clone https://github.com/DgnsGui/DGNS-Nav-Map
 
 
 
