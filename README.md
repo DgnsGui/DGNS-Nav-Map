@@ -63,6 +63,11 @@ Before you begin, make sure you have the following installed:
 - **[Git](https://git-scm.com/)** – Version control system.
 - **[Git LFS](https://git-lfs.com/)** – Required to handle large assets (audio tracks, textures).
 
+##Install
+
+- $$ git clone https://github.com/DgnsGui/DGNS-Nav-Map
+
+
 
 📄 License
 This project is licensed under the MIT License.
