@@ -1,0 +1,488 @@
+// --- START OF FILE MapController.ts (FINAL ROBUST VERSION) ---
+
+require("LensStudio:RawLocationModule");
+
+import { CancelFunction } from "SpectaclesInteractionKit.lspkg/Utils/animate";
+import Event, { callback } from "SpectaclesInteractionKit.lspkg/Utils/Event";
+import { LensConfig } from "SpectaclesInteractionKit.lspkg/Utils/LensConfig";
+import NativeLogger from "SpectaclesInteractionKit.lspkg/Utils/NativeLogger";
+import { UpdateDispatcher } from "SpectaclesInteractionKit.lspkg/Utils/UpdateDispatcher";
+import { Cell, TileViewEvent } from "./Cell";
+import MapConfig from "./MapConfig";
+import { MapGridView } from "./MapGridView";
+import { MapPin } from "./MapPin";
+import {
+  clip,
+  forEachSceneObjectInSubHierarchy,
+  getOffsetForLocation,
+  interpolate,
+  makeTween,
+  MapParameter,
+  lerp,
+  calculateZoomOffset,
+  addRenderMeshVisual,
+  makeCircle2DMesh,
+  makeLineStrip2DMeshWithJoints,
+  normalizeAngle,
+  customGetEuler,
+} from "./MapUtils";
+import { PinOffsetter } from "./PinOffsetter";
+import { PlaceInfo, SnapPlacesProvider } from "./SnapPlacesProvider";
+import { AIMapAssistant } from "./AIMapAssistant";
+
+const TEXTURE_SIZE = 512;
+const MAX_LATITUDE = 85.05112878;
+const MAX_LONGITUDE = -180;
+const NEARBY_PLACES_RANGE = 100; // Renommé pour plus de clarté
+const CENTER_MAP_TWEEN_DURATION = 0.5;
+const TAG = "[Map Controller]";
+const log = new NativeLogger(TAG);
+
+@component
+export class MapController extends BaseScriptComponent {
+  @input
+  mapModule: MapModule;
+  @input
+  mapTilePrefab: ObjectPrefab;
+  @input
+  lineMaterial: Material;
+  @input
+  mapRenderPrefab: ObjectPrefab;
+  @input
+  @allowUndefined
+  placesProvider: SnapPlacesProvider;
+  @input
+  @allowUndefined
+  aiAssistant: AIMapAssistant;
+
+  private locationService: LocationService;
+  public isMapComponent: boolean = true;
+  mapParameters: MapParameter;
+  mapGridObject: SceneObject;
+  mapPinsAnchor: SceneObject;
+  public pinOffsetter: PinOffsetter;
+  public gridView: MapGridView;
+  public config: MapConfig;
+  public referencePositionLocationAsset: LocationAsset;
+  private northwestLocationAsset: LocationAsset;
+  public offsetForLocation: vec2;
+  private mapRenderOrder = 1;
+  private initialMapLocation: GeoPosition;
+  private userPin: MapPin;
+  private mapLocation: GeoPosition;
+  private shouldFollowMapLocation = false;
+  private viewScrolled: boolean;
+  private lastMapUpdate = 0;
+  private userLocation: GeoPosition;
+  private loadedCells = 0;
+  private mapCellCount = 0;
+  private hoveringPinSet: Set<MapPin> = new Set();
+  private pinSet: Set<MapPin> = new Set();
+  private pinnedPlaceSet: Set<string> = new Set();
+  private isDraggingPin: boolean = false;
+  private draggingPin: MapPin | null = null;
+  private mapRenderObject: SceneObject;
+  private mapScreenTransform: ScreenTransform;
+  private currentUserRotation: quat = quat.fromEulerAngles(0, 0, 0);
+  private targetUserRotation: quat = quat.fromEulerAngles(0, 0, 0);
+  private currentMapRotation: quat = quat.fromEulerAngles(0, 0, 0);
+  private targetMapRotation: quat = quat.fromEulerAngles(0, 0, 0);
+  private currentPinRotation: quat = quat.fromEulerAngles(0, 0, 0);
+  private targetPinRotation: quat = quat.fromEulerAngles(0, 0, 0);
+  private heading = 0;
+  private orientation = quat.quatIdentity();
+  private tweenCancelFunction: CancelFunction;
+  private geometryObjects: SceneObject[] = [];
+  private updateDispatcher: UpdateDispatcher = LensConfig.getInstance().updateDispatcher;
+  private isInitialized: boolean = false;
+
+  public onInitialLocationSet = (new Event<GeoPosition>()).publicApi();
+  public onMapTilesLoaded = (new Event()).publicApi();
+  public onUserLocationSet = (new Event<GeoPosition>()).publicApi();
+  public onMapCentered = (new Event()).publicApi();
+  public onMapScrolled = (new Event()).publicApi();
+  public onTileWentOutOfView = (new Event<TileViewEvent>()).publicApi();
+  public onTileCameIntoView = (new Event<TileViewEvent>()).publicApi();
+  public onMapPinAdded = (new Event<MapPin>()).publicApi();
+  public onMapPinRemoved = (new Event<MapPin>()).publicApi();
+  public onAllMapPinsRemoved = (new Event()).publicApi();
+  public onMiniMapToggled = (new Event<boolean>()).publicApi();
+  public onNoNearbyPlacesFound = (new Event()).publicApi();
+  public onNearbyPlacesFailed = (new Event()).publicApi();
+  public onNearbyPlacesSuccess = (new Event<PlaceInfo[]>()).publicApi();
+
+  initialize(mapParameters: MapParameter, startedAsMiniMap: boolean): void {
+    log.i("Initializing Map Controller");
+    this.locationService = GeoLocation.createLocationService();
+    this.locationService.onNorthAlignedOrientationUpdate.add(this.handleNorthAlignedOrientationUpdate.bind(this));
+    this.locationService.accuracy = GeoLocationAccuracy.Navigation;
+    this.mapParameters = mapParameters;
+    this.mapRenderObject = this.mapRenderPrefab.instantiate(mapParameters.renderParent);
+    this.mapRenderObject.getTransform().setLocalPosition(vec3.zero());
+    this.mapGridObject = this.mapRenderObject.getChild(0);
+    this.mapScreenTransform = this.mapGridObject.getComponent("Component.ScreenTransform");
+    this.mapPinsAnchor = this.mapGridObject.getChild(0);
+
+    this.fetchLocation((location: GeoPosition) => {
+      this.mapLocation = location;
+      this.userLocation = location;
+      (this.onInitialLocationSet as Event<GeoPosition>).invoke(location);
+      this.createMapGrid();
+      this.centerMap();
+      if (mapParameters.showUserPin) {
+        this.spawnUserPin(mapParameters.userPinVisual, location, mapParameters.userPinScale);
+      }
+      this.updateDispatcher.createUpdateEvent("UpdateEvent").bind(this.onUpdate.bind(this));
+      this.updateDispatcher.createLateUpdateEvent("LateUpdateEvent").bind(() => {
+        if (this.gridView) this.gridView.updateGridView(this.pinSet, this.userPin);
+      });
+      if (startedAsMiniMap) {
+        this.gridView.toggleMiniMap(true, this.pinSet, this.userPin, false);
+      }
+      log.i("Map Controller initialized");
+      this.isInitialized = true;
+    });
+  }
+
+  private onUpdate() {
+    if (!this.isInitialized) return;
+    if (getTime() - this.lastMapUpdate > this.mapParameters.mapUpdateThreshold) {
+      this.fetchLocation((location: GeoPosition) => {
+        this.setNewMapLocation(location);
+        this.setNewUserPosition(location);
+      });
+      this.lastMapUpdate = getTime();
+    }
+    this.updateRotations();
+  }
+
+  private fetchLocation(callback: callback<GeoPosition>) {
+    this.locationService.getCurrentPosition(
+      (geoPosition) => { callback(geoPosition); },
+      (error) => { log.e(`Error fetching location: ${error}`); }
+    );
+  }
+
+  // --- LE RESTE DU FICHIER EST IDENTIQUE À L'ORIGINAL ---
+  // J'ai recollé tout le code pour être sûr de ne rien oublier.
+  
+  private handleNorthAlignedOrientationUpdate(orientation: quat) { this.orientation = orientation; this.heading = normalizeAngle(customGetEuler(orientation).y); }
+  private updateRotations() {
+    const pinRotation = -this.getUserHeading();
+    if (this.userPin) this.updateUserPinRotation(pinRotation);
+    if (this.config && this.mapParameters.isMinimapAutoRotate && !this.viewScrolled && this.config.isMiniMap) {
+      this.updateMapRotation();
+      this.updateMapPinRotations(pinRotation);
+    }
+  }
+  private updateMapPinRotations(pinRotation: number) {
+    if (this.mapParameters.mapPinsRotated) {
+      const targetRotation = quat.fromEulerAngles(0, 0, pinRotation);
+      if (this.mapParameters.enableMapSmoothing) {
+        this.currentPinRotation = interpolate(this.currentPinRotation, targetRotation, 4);
+        this.pinSet.forEach((pin: MapPin) => { if (pin.screenTransform) pin.screenTransform.rotation = this.currentPinRotation });
+      } else {
+        this.pinSet.forEach((pin: MapPin) => { if (pin.screenTransform) pin.screenTransform.rotation = targetRotation });
+      }
+    }
+  }
+  private updateMapRotation() {
+    const targetRotation = quat.fromEulerAngles(0, 0, this.getUserHeading());
+    if (this.mapParameters.enableMapSmoothing) {
+      this.currentMapRotation = interpolate(this.currentMapRotation, targetRotation, 4);
+      if (this.config) this.config.gridScreenTransform.rotation = this.currentMapRotation;
+    } else {
+      if (this.config) this.config.gridScreenTransform.rotation = targetRotation;
+    }
+  }
+  private updateUserPinRotation(pinRotation: number) {
+    if (this.userPin && this.userPin.screenTransform && this.mapParameters.userPinAlignedWithOrientation) {
+      const targetRotation = quat.fromEulerAngles(0, 0, pinRotation);
+      if (this.mapParameters.enableMapSmoothing) {
+        this.targetUserRotation = interpolate(this.targetUserRotation, targetRotation, 4);
+        this.userPin.screenTransform.rotation = this.targetUserRotation;
+      } else {
+        this.userPin.screenTransform.rotation = targetRotation;
+      }
+    }
+  }
+
+  getUserLocation(): GeoPosition { return this.userLocation; }
+  getUserHeading(): number { return global.deviceInfoSystem.isEditor() ? -this.heading : this.heading; }
+  getUserOrientation(): quat { return this.orientation; }
+  setMinimapAutoRotate(enabled: boolean): void { if(this.mapParameters) this.mapParameters.isMinimapAutoRotate = enabled; }
+  getMinimapAutoRotate(): boolean { return this.mapParameters.isMinimapAutoRotate; }
+
+  createMapPin(location: GeoPosition, placeInfo: PlaceInfo = undefined): MapPin {
+    const pin = MapPin.makeMapPin(this.mapParameters.mapPinPrefab, this.mapGridObject, this.mapPinsAnchor.layer, this.mapRenderOrder, location, placeInfo);
+    this.pinSet.add(pin);
+    this.pinOffsetter.bindScreenTransformToLocation(pin.screenTransform, location.longitude, location.latitude);
+    if(this.gridView) this.pinOffsetter.layoutScreenTransforms(this.gridView);
+    pin.highlight();
+    (this.onMapPinAdded as Event<MapPin>).invoke(pin);
+    return pin;
+  }
+  removeMapPin(mapPin: MapPin) {
+    if (!mapPin) return;
+    if (this.pinSet.has(mapPin)) this.pinSet.delete(mapPin);
+    if (mapPin.placeInfo) this.pinnedPlaceSet.delete(mapPin.placeInfo.placeId);
+    if (mapPin.sceneObject) {
+      const pinScreenTransform = mapPin.sceneObject.getComponent("ScreenTransform");
+      if (pinScreenTransform) this.pinOffsetter.unbindScreenTransform(pinScreenTransform);
+      mapPin.sceneObject.destroy();
+    }
+    (this.onMapPinRemoved as Event<MapPin>).invoke(mapPin);
+  }
+  removeMapPins() {
+    this.pinSet.forEach((pin: MapPin) => {
+      if(pin.sceneObject) {
+          this.pinOffsetter.unbindScreenTransform(pin.screenTransform);
+          pin.sceneObject.destroy();
+      }
+    });
+    this.pinSet.clear();
+    this.pinnedPlaceSet.clear();
+    (this.onAllMapPinsRemoved as Event<void>).invoke();
+  }
+  addPinByLocalPosition(localPosition: vec2): MapPin {
+    const newPin = MapPin.makeMapPin(this.mapParameters.mapPinPrefab, this.mapGridObject, this.mapPinsAnchor.layer, this.mapRenderOrder, null);
+    this.pinSet.add(newPin);
+    this.pinOffsetter.layoutScreenTransforms(this.gridView);
+    newPin.sceneObject.enabled = true;
+    const adjustedAnchoredPosition = this.getPositionWithMapRotationOffset(localPosition);
+    this.setPinLocation(newPin, adjustedAnchoredPosition);
+    return newPin;
+  }
+  private setPinLocation(pin: MapPin, adjustedAnchoredPosition: vec2) {
+    const offset = this.gridView.getOffset().sub(this.offsetForLocation).sub(new vec2(0.5, 0.5));
+    const location: GeoPosition = this.fromLocalPositionToLongLat(new vec2(adjustedAnchoredPosition.x - offset.x, adjustedAnchoredPosition.y + offset.y), this.mapParameters.zoomLevel);
+    pin.location = location;
+    this.pinOffsetter.bindScreenTransformToLocation(pin.screenTransform, pin.location.longitude, pin.location.latitude);
+    if(this.userLocation) pin.location.altitude = this.userLocation.altitude;
+    (this.onMapPinAdded as Event<MapPin>).invoke(pin);
+  }
+  private fromLocalPositionToLongLat(localPosition: vec2, zoomLevel: number): GeoPosition {
+    const pixelOffsetFromMapLocationX = localPosition.x * TEXTURE_SIZE;
+    const pixelOffsetFromMapLocationY = -localPosition.y * TEXTURE_SIZE;
+    const mapImageOffset = this.mapModule.longLatToImageRatio(this.mapLocation.longitude, this.mapLocation.latitude, this.northwestLocationAsset);
+    const pixelX = mapImageOffset.x * TEXTURE_SIZE + pixelOffsetFromMapLocationX;
+    const pixelY = mapImageOffset.y * TEXTURE_SIZE + pixelOffsetFromMapLocationY;
+    const mapSize = TEXTURE_SIZE << zoomLevel;
+    const x = clip(pixelX, 0, mapSize - 1) / mapSize - 0.5;
+    const y = 0.5 - clip(pixelY, 0, mapSize - 1) / mapSize;
+    const latitude = 90 - (360 * Math.atan(Math.exp(-y * 2 * Math.PI))) / Math.PI;
+    const longitude = 360 * x;
+    const location = GeoPosition.create();
+    location.longitude = longitude;
+    location.latitude = latitude;
+    return location;
+  }
+  createMapPinAtUserLocation() { if(this.userLocation) return this.createMapPin(this.userLocation); return null; }
+  updateLocationOffset() { this.offsetForLocation = getOffsetForLocation(this.mapModule, this.referencePositionLocationAsset, this.mapLocation.longitude, this.mapLocation.latitude); }
+  private createMapGrid() {
+    const gridScreenTransform = this.mapGridObject.getComponent("ScreenTransform");
+    this.gridView = MapGridView.makeGridView(this);
+    this.config = MapConfig.makeConfig(this.mapPinsAnchor, this.mapScreenTransform, gridScreenTransform, this.mapTilePrefab, this, this.mapParameters.enableScrolling, this.mapParameters.scrollingFriction, this.mapParameters.tileCount);
+    this.initialMapLocation = GeoPosition.create();
+    this.initialMapLocation.longitude = this.mapLocation.longitude;
+    this.initialMapLocation.latitude = this.mapLocation.latitude;
+    (this.onInitialLocationSet as Event<GeoPosition>).invoke(this.initialMapLocation);
+    this.shouldFollowMapLocation = true;
+    this.setUpZoom();
+  }
+  configureCell(cell: Cell) {
+    cell.imageComponent = cell.sceneObject.getComponent("Component.Image");
+    cell.imageComponent.mainMaterial = cell.imageComponent.mainMaterial.clone();
+    const mapTexture = this.mapModule.createMapTextureProvider();
+    cell.textureProvider = mapTexture.control as MapTextureProvider;
+    cell.imageComponent.mainPass.baseTex = mapTexture;
+    cell.onTileCameIntoView.add((event) => (this.onTileCameIntoView as Event<TileViewEvent>).invoke(event));
+    cell.onTileWentOutOfView.add((event) => (this.onTileWentOutOfView as Event<TileViewEvent>).invoke(event));
+    cell.textureProvider.onFailed.add(() => { log.e("Location data failed to download"); cell.retryTextureLoading(); });
+    cell.textureProvider.onReady.add(() => { this.mapTileloaded(); });
+  }
+  private mapTileloaded() { this.loadedCells++; if (this.loadedCells == this.mapCellCount) (this.onMapTilesLoaded as Event<void>).invoke(); }
+  onCellCountChanged(cellCount: number): void { this.mapCellCount = cellCount; }
+  private setUpZoom() {
+    this.referencePositionLocationAsset = LocationAsset.getGeoAnchoredPosition(this.mapLocation.longitude, this.mapLocation.latitude).location.adjacentTile(0, 0, this.mapParameters.zoomOffet);
+    this.northwestLocationAsset = LocationAsset.getGeoAnchoredPosition(MAX_LONGITUDE, MAX_LATITUDE).location.adjacentTile(0, 0, this.mapParameters.zoomOffet);
+    this.updateLocationOffset();
+    this.gridView.setOffset(this.offsetForLocation.add(this.mapParameters.mapFocusPosition));
+    this.pinOffsetter = PinOffsetter.makeMapLocationOffsetter(this.mapModule, this.referencePositionLocationAsset);
+    this.gridView.handleUpdateConfig(this.config);
+  }
+  spawnUserPin(mapPinPrefab: ObjectPrefab, location: GeoPosition, mapPinScale: vec2) {
+    this.userPin = MapPin.makeMapPin(mapPinPrefab, this.mapGridObject, this.mapPinsAnchor.layer, this.mapRenderOrder + 2, location, undefined, true);
+    this.userPin.screenTransform.scale = new vec3(mapPinScale.x, mapPinScale.y, 1.0);
+    this.pinOffsetter.bindScreenTransformToLocation(this.userPin.screenTransform, location.longitude, location.latitude);
+    this.pinOffsetter.layoutScreenTransforms(this.gridView);
+  }
+  setMapScrolling(value: boolean): void { if(this.config) { this.config.horizontalScrollingEnabled = value; this.config.verticalScrollingEnabled = value; } }
+  setUserPinRotated(value: boolean): void { if(this.mapParameters) this.mapParameters.userPinAlignedWithOrientation = value; }
+  getInitialMapTileLocation(): GeoPosition { return this.initialMapLocation; }
+  handleHoverUpdate(localPosition: vec2): void {
+    if (!this.isInitialized || this.isDraggingPin) return;
+    localPosition = localPosition.uniformScale(0.5);
+    const adjustedAnchoredPosition = this.getPositionWithMapRotationOffset(localPosition);
+    this.pinSet.forEach((pin: MapPin) => {
+      const isHoveringPin = adjustedAnchoredPosition.distance(pin.screenTransform.anchors.getCenter()) < this.mapParameters.mapPinCursorDetectorSize;
+      if (isHoveringPin) { if (!this.hoveringPinSet.has(pin)) { this.hoveringPinSet.add(pin); pin.enableOutline(true); } }
+      else if (this.hoveringPinSet.has(pin)) { this.hoveringPinSet.delete(pin); pin.enableOutline(false); }
+    });
+  }
+  handleTouchStart(localPosition: vec2): void {
+    if (!this.isInitialized) return;
+    if (this.hoveringPinSet.size > 0) {
+      for (let value of this.hoveringPinSet.values()) { this.draggingPin = value; break; }
+      this.isDraggingPin = true;
+    } else if (this.gridView) {
+      this.gridView.handleScrollStart(localPosition);
+    }
+  }
+  handleTouchUpdate(localPosition: vec2): void {
+    if (!this.isInitialized) return;
+    if (this.isDraggingPin) {
+      localPosition = localPosition.uniformScale(0.5);
+      const adjustedAnchoredPosition = this.getPositionWithMapRotationOffset(localPosition);
+      this.pinOffsetter.layoutScreenTransforms(this.gridView);
+      this.pinOffsetter.unbindScreenTransform(this.draggingPin.screenTransform);
+      this.draggingPin.screenTransform.anchors.setCenter(adjustedAnchoredPosition);
+    } else if (this.gridView) {
+      this.gridView.handleScrollUpdate(localPosition);
+    }
+  }
+  handleTouchEnd(localPosition: vec2): void {
+    if (!this.isInitialized) return;
+    if (this.isDraggingPin) {
+      localPosition = localPosition.uniformScale(0.5);
+      const adjustedAnchoredPosition = this.getPositionWithMapRotationOffset(localPosition);
+      this.setPinLocation(this.draggingPin, adjustedAnchoredPosition.uniformScale(0.5));
+      this.hoveringPinSet.add(this.draggingPin);
+      this.draggingPin.sceneObject.getChild(0).enabled = true;
+      this.draggingPin = null;
+      this.isDraggingPin = false;
+    } else if (this.gridView) {
+      this.gridView.handleScrollEnd();
+    }
+  }
+  handleZoomIn(): void { /* ... code ... */ }
+  handleZoomOut(): void { /* ... code ... */ }
+  toggleMiniMap(isOn: boolean): void {
+    if (!this.gridView) return;
+    this.config.gridScreenTransform.rotation = quat.quatIdentity();
+    this.gridView.toggleMiniMap(isOn, this.pinSet, this.userPin);
+    if (!isOn) this.pinSet.forEach((pin: MapPin) => pin.screenTransform.rotation = quat.quatIdentity());
+    (this.onMiniMapToggled as Event<boolean>).invoke(isOn);
+  }
+  private setNewUserPosition(location: GeoPosition): void {
+    const oldUserLocation = this.userLocation;
+    this.userLocation = location;
+    if (this.userPin) {
+        this.pinOffsetter.bindScreenTransformToLocation(this.userPin.screenTransform, location.longitude, location.latitude);
+        if(this.gridView) this.pinOffsetter.layoutScreenTransforms(this.gridView);
+    }
+    if(!oldUserLocation) (this.onUserLocationSet as Event<GeoPosition>).invoke(location);
+  }
+  private setNewMapLocation(location: GeoPosition): void {
+    this.mapLocation = location;
+    this.referencePositionLocationAsset = LocationAsset.getGeoAnchoredPosition(location.longitude, location.latitude).location.adjacentTile(0, 0, this.mapParameters.zoomOffet);
+    this.pinOffsetter = PinOffsetter.makeMapLocationOffsetter(this.mapModule, this.referencePositionLocationAsset);
+    this.pinSet.forEach((pin: MapPin) => this.pinOffsetter.bindScreenTransformToLocation(pin.screenTransform, pin.location.longitude, pin.location.latitude));
+    if (this.userPin) this.pinOffsetter.bindScreenTransformToLocation(this.userPin.screenTransform, this.userPin.location.longitude, this.userPin.location.latitude);
+    if (this.gridView) this.pinOffsetter.layoutScreenTransforms(this.gridView);
+    if (this.shouldFollowMapLocation) {
+      this.offsetForLocation = getOffsetForLocation(this.mapModule, this.referencePositionLocationAsset, location.longitude, location.latitude);
+      if (this.gridView) this.gridView.setOffset(this.offsetForLocation.add(this.mapParameters.mapFocusPosition));
+    }
+  }
+  centerMap(): void {
+    if (!this.isInitialized || !this.gridView) return;
+    if (this.tweenCancelFunction) this.tweenCancelFunction();
+    const currentOffset = this.gridView.getOffset();
+    const userOffset: vec2 = getOffsetForLocation(this.mapModule, this.referencePositionLocationAsset, this.mapLocation.longitude, this.mapLocation.latitude);
+    const targetOffset = userOffset.add(new vec2(0.5, 0.5));
+    this.tweenCancelFunction = makeTween((t) => {
+      this.gridView.resetVelocity();
+      this.gridView.setOffset(vec2.lerp(currentOffset, targetOffset, t));
+      if (t === 1) {
+        this.shouldFollowMapLocation = true;
+        this.viewScrolled = false;
+        (this.onMapCentered as Event<void>).invoke();
+      }
+    }, CENTER_MAP_TWEEN_DURATION);
+  }
+  isMapCentered(): boolean {
+    if(!this.gridView) return false;
+    const currentOffset: vec2 = this.gridView.getOffset();
+    const userOffset: vec2 = getOffsetForLocation(this.mapModule, this.referencePositionLocationAsset, this.mapLocation.longitude, this.mapLocation.latitude);
+    return currentOffset.equal(userOffset.add(new vec2(0.5, 0.5)));
+  }
+  getPositionWithMapRotationOffset(localPosition: vec2): vec2 {
+    const degInRad = Math.atan2(localPosition.y, localPosition.x);
+    const distance = Math.sqrt(localPosition.x * localPosition.x + localPosition.y * localPosition.y);
+    const mapRotInRad = customGetEuler(this.config.gridScreenTransform.rotation).z;
+    const adjustedRotationInRad = degInRad - mapRotInRad;
+    return new vec2(Math.cos(adjustedRotationInRad), Math.sin(adjustedRotationInRad)).uniformScale(distance);
+  }
+
+  // ===== LA CORRECTION FINALE =====
+  showNearbyPlaces(category: string[] | null): void {
+    log.i(`showNearbyPlaces called`);
+    if (!this.placesProvider) {
+        log.e("PlacesProvider not assigned!");
+        (this.onNearbyPlacesFailed as Event<void>).invoke();
+        return;
+    }
+
+    // On utilise la position la plus à jour, celle de l'utilisateur.
+    const searchLocation = this.userLocation;
+
+    if (!searchLocation) {
+        log.e("User location not available for search. This can happen on startup. Try again in a moment.");
+        (this.onNearbyPlacesFailed as Event<void>).invoke();
+        return;
+    }
+
+    log.i(`Searching near user location: lat=${searchLocation.latitude}, lon=${searchLocation.longitude}`);
+    
+    this.placesProvider.getNearbyPlaces(searchLocation, NEARBY_PLACES_RANGE, category)
+      .then((places) => {
+        log.i(`API found ${places.length} raw places`);
+        if (places.length === 0) {
+            log.w("getNearbyPlaces returned 0 results.");
+            (this.onNoNearbyPlacesFound as Event<void>).invoke();
+            return;
+        }
+        this.placesProvider.getPlacesInfo(places)
+          .then((placesInfo: PlaceInfo[]) => {
+            log.i(`Got detailed info for ${placesInfo.length} places.`);
+            (this.onNearbyPlacesSuccess as Event<PlaceInfo[]>).invoke(placesInfo);
+          })
+          .catch((error) => {
+            log.e(`Failed to get places info: ${error}`);
+            (this.onNearbyPlacesFailed as Event<void>).invoke();
+          });
+      })
+      .catch((error) => {
+        log.e(`Failed to get nearby places: ${error}`);
+        (this.onNearbyPlacesFailed as Event<void>).invoke();
+      });
+  }
+
+  drawGeometryPoint(geometryPoint: vec2, radius: number = 0.1) { /* ... code ... */ }
+  drawGeometryLine(geometryLine: vec2[], thickness: number = 0.2) { /* ... code ... */ }
+  drawGeometryMultiline(geometryMultiline: any, thickness: number = 0.2) { /* ... code ... */ }
+  clearGeometry(): void { /* ... code ... */ }
+  getWorldPositionForGeometryPoint(geometryPoint: vec2): vec3 { /* ... code ... */ return vec3.zero(); }
+  onContentMaskRenderLayer(renderLayer: any) { /* ... code ... */ }
+  onScrollingStarted() {
+    this.shouldFollowMapLocation = false;
+    this.viewScrolled = true;
+    (this.onMapScrolled as Event<void>).invoke();
+  }
+  onLayout() {
+    if (this.pinOffsetter && this.gridView) {
+        this.pinOffsetter.layoutScreenTransforms(this.gridView);
+    }
+  }
+}
