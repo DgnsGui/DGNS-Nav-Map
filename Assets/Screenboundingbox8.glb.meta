@@ -7,7 +7,6 @@
     Meshes/Sphere: !<reference> 4add3447-ed8b-4b7a-a629-5c686be61b70
     Scene: !<reference> a88f5860-7674-412e-ae41-2372c9e5263a
     acdcef40226ec16a: !<reference> 4cbb8841-7105-4845-9e7e-7d85801e8587
-    e140c4199169af55: !<reference> cc66d56d-db5a-4ff4-b2fa-32523f862ce1
   ImporterName: GltfImporter
   PrimaryAsset: !<reference> a88f5860-7674-412e-ae41-2372c9e5263a
   PackageType: LegacyPackage
