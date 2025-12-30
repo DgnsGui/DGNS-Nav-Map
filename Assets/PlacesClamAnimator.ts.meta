@@ -1,0 +1,56 @@
+- !<AssetImportMetadata/dea71091-86d6-4bbc-a614-75f9ae99a48a>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 0b9f6c6d-b26a-4da3-8019-2605c3fed5d6
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 0b9f6c6d-b26a-4da3-8019-2605c3fed5d6
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 652b4c45-7049-4340-994e-a7a08ac5fe5b
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/652b4c45-7049-4340-994e-a7a08ac5fe5b>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 692b61f2-9223-44e2-bc92-bf28a0e1c417
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    animationDuration: false
+    baseVisibleY: false
+    enableDebugLogs: false
+    hiddenOffset: false
+    placesClamContainer: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - placesClamContainer: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      baseVisibleY: !<float> 15.000000
+      hiddenOffset: !<float> -30.000000
+      animationDuration: 0.500000
+      enableDebugLogs: false
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - "// @input SceneObject placesClamContainer {\"hint\":\"Le container du Places Clam (l'ovale avec la liste)\"}"
+    - '// @input float baseVisibleY = 15 {"hint":"Position Y quand le container est visible (valeur de base, sans AI)"}'
+    - '// @input float hiddenOffset = -30 {"hint":"Offset Y pour cacher le container"}'
+    - '// @input float animationDuration = 0.5 {"hint":"Durée de toutes les animations (secondes)"}'
+    - '// @input bool enableDebugLogs {"hint":"Active les logs détaillés"}'

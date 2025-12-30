@@ -1,0 +1,112 @@
+- !<ObjectPrefab/8fb92853-c9b0-4b98-b521-248300020c0f>
+  PackagePath: ""
+  objects:
+    - !<own> 0ebc816c-7c00-4b86-84eb-9fde1d0a81e8
+  LazyLoading: false
+  RetainAssets: true
+- !<SceneObject/0ebc816c-7c00-4b86-84eb-9fde1d0a81e8>
+  PrefabRemaps:
+    - 0ebc816c-7c00-4b86-84eb-9fde1d0a81e8: 0ebc816c-7c00-4b86-7b14-6021e2f57e17
+    - 1944ab01-d674-49c8-b61f-094a7ed5e7e9: 1944ab01-d674-49c8-49e0-f6b5812a1816
+    - 4045afa1-74cf-42ce-8e21-b3bf60013907: 4045afa1-74cf-42ce-71de-4c409ffec6f8
+    - 55ae7b13-a9b7-4cab-8fc0-cd58f70768af: 55ae7b13-a9b7-4cab-703f-32a708f89750
+    - 775513c0-d9a6-4936-8315-de799f5f7a4b: 775513c0-d9a6-4936-7cea-218660a085b4
+  Name: PinPrefab
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> 775513c0-d9a6-4936-8315-de799f5f7a4b
+    - !<own> 55ae7b13-a9b7-4cab-8fc0-cd58f70768af
+  Components:
+    []
+- !<RenderMeshVisual/1944ab01-d674-49c8-b61f-094a7ed5e7e9>
+  PrefabRemaps:
+    []
+  Name: Render Mesh Visual
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> ee2926a6-538c-404e-a2b7-622795538dcc
+  Mesh: !<reference> 9d7384d9-0215-4f75-8b03-f44096507d85
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
+- !<Text3D/4045afa1-74cf-42ce-8e21-b3bf60013907>
+  PrefabRemaps:
+    []
+  Name: Text3D
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    - !<reference> 98ffeb34-7b8c-487f-a0e5-99f89080f80a
+  Text: 3D Text
+  Editable: false
+  ShowEditingPreview: true
+  TouchHandler: !<reference> 00000000-0000-0000-0000-000000000000
+  SizeToFit: false
+  FontSize: 48
+  ExtrusionDepth: 0.400000
+  ExtrudeDirection: Both
+  Font: !<reference> 6a5c8836-10f9-4da2-bb1a-a0bc3bd1827e
+  LayoutRect:
+    left: -7.500000
+    bottom: -2.250000
+    right: 7.500000
+    top: 2.250000
+  OverflowVertical: Overflow
+  OverflowHorizontal: Overflow
+  AdvancedLayout: !<TextAdvancedLayout>
+    ExtentsTarget: !<reference> 00000000-0000-0000-0000-000000000000
+    LetterSpacing: 0.000000
+    LineSpacing: 1.000000
+    CapitalizationOverride: None
+  EnableBatching: false
+- !<SceneObject/55ae7b13-a9b7-4cab-8fc0-cd58f70768af>
+  PrefabRemaps:
+    []
+  Name: ButtonCapsuleMesh
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 1944ab01-d674-49c8-b61f-094a7ed5e7e9
+- !<SceneObject/775513c0-d9a6-4936-8315-de799f5f7a4b>
+  PrefabRemaps:
+    []
+  Name: Text3D
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 4045afa1-74cf-42ce-8e21-b3bf60013907

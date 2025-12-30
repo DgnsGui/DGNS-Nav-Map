@@ -1,0 +1,92 @@
+- !<AssetImportMetadata/dc331617-3172-45ac-9f0e-9b63390075a3>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> ecdd7326-137e-40ca-9857-e5bad4d05376
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> ecdd7326-137e-40ca-9857-e5bad4d05376
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 17118792-9eff-4de1-ae1c-a5a23e71d329
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/17118792-9eff-4de1-ae1c-a5a23e71d329>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 7516eae8-980d-4e82-a72b-f1f2b8f36991
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    aiResponseAnimator: false
+    audioComponent: false
+    enableDebugLogs: false
+    loadingText: false
+    mapComponent: false
+    maxAudioDuration: false
+    maxTokens: false
+    minAudioDuration: false
+    musicAudioPlayer: false
+    openAIModel: false
+    postAudioDelay: false
+    responseContainer: false
+    responseText: false
+    temperature: false
+    ttsModel: false
+    ttsVoice: false
+    volumeDuckDelay: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - mapComponent: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
+      openAIModel: gpt-4
+      maxTokens: !<float> 150.000000
+      temperature: 0.700000
+      ttsVoice: alloy
+      ttsModel: tts-1
+      responseText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      loadingText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      responseContainer: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      audioComponent: !<reference.AudioComponent> 00000000-0000-0000-0000-000000000000
+      musicAudioPlayer: !<reference.AudioComponent> 00000000-0000-0000-0000-000000000000
+      aiResponseAnimator: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      enableDebugLogs: true
+      volumeDuckDelay: 0.300000
+      minAudioDuration: !<float> 2.000000
+      postAudioDelay: 0.500000
+      maxAudioDuration: !<float> 30.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input AssignableType mapComponent
+    - '// @input string openAIModel = "gpt-4o-mini"'
+    - // @input float maxTokens = 200
+    - // @input float temperature = 0.8
+    - '// @input string ttsVoice = "alloy"'
+    - '// @input string ttsModel = "tts-1"'
+    - // @input Component.Text responseText
+    - // @input Component.Text loadingText
+    - // @input SceneObject responseContainer
+    - // @input Component.AudioComponent audioComponent
+    - '// @input Component.AudioComponent musicAudioPlayer {"hint":"AudioComponent de la musique de fond (ex: Music Audio Player)"}'
+    - // @input AssignableType_1 aiResponseAnimator
+    - // @input bool enableDebugLogs = true
+    - // @input float volumeDuckDelay = 0.3
+    - // @input float minAudioDuration = 2
+    - // @input float postAudioDelay = 0.5
+    - // @input float maxAudioDuration = 30

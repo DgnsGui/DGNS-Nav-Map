@@ -1,0 +1,44 @@
+- !<AssetImportMetadata/5dd0f78b-2070-4999-acaa-918843933357>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> a8a7c34f-8687-4bc2-be5c-5f5200fae009
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> a8a7c34f-8687-4bc2-be5c-5f5200fae009
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 0d781027-f3e5-4351-9412-a5f677bbc709
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/0d781027-f3e5-4351-9412-a5f677bbc709>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 91582b46-ef3e-4500-b8a4-7579ff7544b2
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    mapComponent: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - mapComponent: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input AssignableType mapComponent
