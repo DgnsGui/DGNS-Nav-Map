@@ -1,0 +1,10 @@
+- !<AssetCache>
+  AssetFiles:
+    41c1cc38-1813-4bc6-8002-13054a1784ac: 2cac0025-f8bd-49e6-a226-1dd3cddc0122/da5f76ab57f7dd33be64ab33f417c38b/Data/MapComponent.rar
+  Assets:
+    - !<BinAsset/41c1cc38-1813-4bc6-8002-13054a1784ac>
+      PackagePath: ""
+  SourceHash: da5f76ab57f7dd33be64ab33f417c38b
+  FileHash: 747af964c8a7c8228382fffc8d43b484
+  NativePackageItems:
+    []

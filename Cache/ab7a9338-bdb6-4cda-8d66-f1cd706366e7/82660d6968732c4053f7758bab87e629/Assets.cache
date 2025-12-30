@@ -1,0 +1,12 @@
+- !<AssetCache>
+  AssetFiles:
+    8761d678-66c6-474e-b77d-8c382f6f2b14: ab7a9338-bdb6-4cda-8d66-f1cd706366e7/82660d6968732c4053f7758bab87e629/Data/1765896289275~2282377733191.specsv2_videoretake.mp4
+  Assets:
+    - !<VideoTexture/8761d678-66c6-474e-b77d-8c382f6f2b14>
+      PackagePath: ""
+      AutoPlay: true
+      Volume: 0.000000
+  SourceHash: 82660d6968732c4053f7758bab87e629
+  FileHash: ba4d176e0f2ae78cdfa4eb7d777f82ad
+  NativePackageItems:
+    []
