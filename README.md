@@ -25,8 +25,8 @@
 It provides a real-time AR map centered on the user’s GPS position, enriched with nearby places, AI-powered guidance, and spatial interactions.
 
 This project is designed as:
-- a **technical reference for AR navigation systems**
-- a **practical extension of the Outdoor Navigation Sample**
+- a **good starting point for AR navigation projects**
+- a **more visual extension of the Outdoor Navigation Sample**
 - a **modular architecture for location-based experiences**
 - a **foundation for AI-assisted spatial applications**
 
