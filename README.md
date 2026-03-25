@@ -169,43 +169,5 @@ git clone https://github.com/DgnsGui/DGNS-Nav-Map
 Open in Lens Studio:
 
 DGNS Nav Map 1.1 Backup 4.esproj
-⚙️ Configuration
 
-Set API credentials in:
-
-Assets/RemoteServiceGateway.lspkg/RemoteServiceGatewayCredentials.ts
-
-Required:
-
-OpenAI Token (AI + TTS)
-Snap Token (Places API)
-
-Optional:
-
-Google Token
-🎮 User Experience
-Spawn Pin → Create a pin
-Clear Pins → Remove all pins
-Zoom / Recenter → Navigate the map
-Mini Map Toggle → Switch modes
-Places Buttons → Discover nearby venues
-Ask AI → Get contextual voice guidance
-⚠️ Known Issues
-Category Filters
-Empty filters ("") bypass filtering logic
-Fix: use "cafe", "restaurant", "bar"
-Places Cache
-Incorrect key used in cache lookup
-May prevent proper reuse
-Audio Ducking Logs
-Logged value differs from actual volume applied
-🚀 Deployment
-Test via Lens Studio (Play)
-Publish for Spectacles via your pipeline
-🙏 Credits
-Snap Remote Service Gateway
-Spectacles UIKit
-Outdoor Navigation Sample (Snap)
-OpenAI API
-Snapchat Places API
 <p align="center"> Developed with ❤️ by <strong>GuillaumeDGNS</strong> </p> ```
