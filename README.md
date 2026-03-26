@@ -36,8 +36,7 @@ This project is designed as:
 
 - 🗺️ **AR Map System** — Real-time tiled map synced with GPS and device orientation  
 - 🤏 **Gesture Navigation** — Pan, zoom, rotate, and recenter interactions  
-- 📍 **Custom Pins** — Create and remove pins dynamically  
-- 🧭 **Mini-Map Mode** — Circular bounds with simplified UI  
+- 📍 **Custom Pins** — Create and remove pins dynamically    
 - 🌍 **Nearby Places** — Real-world locations via Snapchat Places API  
 - 🎯 **Quest Markers** — Link AR markers to map locations  
 - 🤖 **AI Assistant** — Contextual responses with text + voice (TTS)  
