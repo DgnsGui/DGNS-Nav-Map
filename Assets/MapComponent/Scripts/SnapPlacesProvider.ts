@@ -237,7 +237,7 @@ export class SnapPlacesProvider extends BaseScriptComponent {
         cachedLocation
       );
       if (distance < nearestDistance) {
-        cachedNearbyPlaces = this.locationToPlaces.get(location);
+        cachedNearbyPlaces = this.locationToPlaces.get(cachedLocation);
         nearestDistance = distance;
       }
     }

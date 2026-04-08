@@ -85,6 +85,9 @@ export class QuestMarkController extends BaseScriptComponent {
     this.mapComponent.subscribeOnAllMapPinsRemoved(
       this.handleAllMapPinsRemoved.bind(this)
     );
+    this.mapComponent.subscribeOnMapPinRemoved(
+      this.handleMapPinRemoved.bind(this)
+    );
 
     this.camera = WorldCameraFinderProvider.getInstance().getComponent();
     this.cameraTransform =
@@ -414,15 +417,6 @@ export class QuestMarkController extends BaseScriptComponent {
   }
 
   private handleMapAddPin(pin: MapPin): void {
-    const userLocation = this.mapComponent.getUserLocation();
-    print("User Location: " + userLocation);
-    if (
-      pin.location.longitude === userLocation.longitude &&
-      pin.location.latitude === userLocation.latitude
-    ) {
-      return;
-    }
-
     if (!this.questMarkers.has(pin.sceneObject.uniqueIdentifier)) {
       const questmarkObject = this.questMarkerPrefab.instantiate(
         this.sceneObject
@@ -447,6 +441,16 @@ export class QuestMarkController extends BaseScriptComponent {
       this.mapComponent.linkQuestMarkerToPlace(pin, questMark);
       print("Quest marker linked to MapComponent for pin: " + pin.sceneObject.name);
     }
+  }
+
+  private handleMapPinRemoved(pin: MapPin): void {
+    const questMarker = this.questMarkers.get(pin.sceneObject.uniqueIdentifier);
+    if (!questMarker) {
+      return;
+    }
+
+    questMarker.transform.getSceneObject().destroy();
+    this.questMarkers.delete(pin.sceneObject.uniqueIdentifier);
   }
 
   private handleAllMapPinsRemoved(): void {

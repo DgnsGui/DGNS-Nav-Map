@@ -612,11 +612,11 @@ export class MapComponent extends BaseScriptComponent {
       });
       delayEvent.reset(0.2);
     } else {
-      print("WARNING: Could not find place for pin - quest marker stays hidden");
+      print("No matching place entry for pin - treating as manual pin and showing marker");
       if (questMarker && questMarker.transform) {
         const sceneObject = questMarker.transform.getSceneObject();
         if (sceneObject) {
-          sceneObject.enabled = false;
+          sceneObject.enabled = true;
         }
       }
     }

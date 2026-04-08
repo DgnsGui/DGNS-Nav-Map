@@ -23,10 +23,12 @@ import {
   makeLineStrip2DMeshWithJoints,
   normalizeAngle,
   customGetEuler,
+  getPhysicalDistanceBetweenLocations,
 } from "./MapUtils";
 import { PinOffsetter } from "./PinOffsetter";
 import { PlaceInfo, SnapPlacesProvider } from "./SnapPlacesProvider";
 import { AIMapAssistant } from "./AIMapAssistant";
+import { PinFactory } from "./PinFactory";
 
 const TEXTURE_SIZE = 512;
 const MAX_LATITUDE = 85.05112878;
@@ -78,6 +80,7 @@ export class MapController extends BaseScriptComponent {
   private userLocation: GeoPosition;
   private loadedCells = 0;
   private mapCellCount = 0;
+  private pinFactory: PinFactory;
 
   // Pin management
   private hoveringPinSet: Set<MapPin> = new Set();
@@ -225,12 +228,27 @@ export class MapController extends BaseScriptComponent {
   private fetchLocation(callback: callback<GeoPosition>) {
     this.locationService.getCurrentPosition(
       (geoPosition) => {
+        this.userLocation = geoPosition;
         callback(geoPosition);
       },
       (error) => {
         log.e(`Error fetching location: ${error}`);
       }
     );
+  }
+
+  private fetchLocationAsync(): Promise<GeoPosition> {
+    return new Promise((resolve, reject) => {
+      this.locationService.getCurrentPosition(
+        (geoPosition) => {
+          this.userLocation = geoPosition;
+          resolve(geoPosition);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
   }
 
   private handleNorthAlignedOrientationUpdate(orientation: quat) {
@@ -342,26 +360,8 @@ export class MapController extends BaseScriptComponent {
   }
 
   createMapPin(location: GeoPosition, placeInfo: PlaceInfo = undefined): MapPin {
-    const pin = MapPin.makeMapPin(
-      this.mapParameters.mapPinPrefab,
-      this.mapGridObject,
-      this.mapPinsAnchor.layer,
-      this.mapRenderOrder,
-      location,
-      placeInfo
-    );
-
+    const pin = this.pinFactory.create(location, placeInfo);
     this.pinSet.add(pin);
-
-    this.pinOffsetter.bindScreenTransformToLocation(
-      pin.screenTransform,
-      location.longitude,
-      location.latitude
-    );
-
-    this.pinOffsetter.layoutScreenTransforms(this.gridView);
-    pin.highlight();
-
     this.onMapPinAddedEvent.invoke(pin);
     return pin;
   }
@@ -394,25 +394,23 @@ export class MapController extends BaseScriptComponent {
   }
 
   addPinByLocalPosition(localPosition: vec2): MapPin {
-    const newPin = MapPin.makeMapPin(
-      this.mapParameters.mapPinPrefab,
-      this.mapGridObject,
-      this.mapPinsAnchor.layer,
-      this.mapRenderOrder,
-      null
-    );
-    this.pinSet.add(newPin);
-
-    this.pinOffsetter.layoutScreenTransforms(this.gridView);
-    newPin.sceneObject.enabled = true;
-
     const adjustedAnchoredPosition = this.getPositionWithMapRotationOffset(localPosition);
-    this.setPinLocation(newPin, adjustedAnchoredPosition);
-
-    return newPin;
+    const location = this.resolveLocationFromLocalPosition(adjustedAnchoredPosition);
+    return this.createMapPin(location);
   }
 
-  private setPinLocation(pin: MapPin, adjustedAnchoredPosition: vec2) {
+  private setPinLocation(pin: MapPin, adjustedAnchoredPosition: vec2): void {
+    const location = this.resolveLocationFromLocalPosition(adjustedAnchoredPosition);
+    pin.location = location;
+    this.pinOffsetter.bindScreenTransformToLocation(
+      pin.screenTransform,
+      location.longitude,
+      location.latitude
+    );
+    this.pinOffsetter.layoutScreenTransforms(this.gridView);
+  }
+
+  private resolveLocationFromLocalPosition(adjustedAnchoredPosition: vec2): GeoPosition {
     const offset = this.gridView.getOffset().sub(this.offsetForLocation).sub(new vec2(0.5, 0.5));
     const location: GeoPosition = this.fromLocalPositionToLongLat(
       new vec2(
@@ -421,15 +419,11 @@ export class MapController extends BaseScriptComponent {
       ),
       this.mapParameters.zoomLevel
     );
-    pin.location = location;
-    this.pinOffsetter.bindScreenTransformToLocation(
-      pin.screenTransform,
-      pin.location.longitude,
-      pin.location.latitude
-    );
-    pin.location.altitude = this.userLocation.altitude;
+    if (this.userLocation) {
+      location.altitude = this.userLocation.altitude;
+    }
 
-    this.onMapPinAddedEvent.invoke(pin);
+    return location;
   }
 
   private fromLocalPositionToLongLat(localPosition: vec2, zoomLevel: number): GeoPosition {
@@ -557,29 +551,25 @@ export class MapController extends BaseScriptComponent {
       this.referencePositionLocationAsset
     );
 
+    this.pinFactory = new PinFactory(
+      this.mapParameters.mapPinPrefab,
+      this.mapGridObject,
+      this.mapPinsAnchor.layer,
+      this.mapRenderOrder,
+      this.pinOffsetter,
+      this.gridView
+    );
+
     this.gridView.handleUpdateConfig(this.config);
   }
 
   spawnUserPin(mapPinPrefab: ObjectPrefab, location: GeoPosition, mapPinScale: vec2) {
-    this.userPin = MapPin.makeMapPin(
+    this.userPin = this.pinFactory.createUserPin(
       mapPinPrefab,
-      this.mapGridObject,
-      this.mapPinsAnchor.layer,
-      this.mapRenderOrder + 2,
       location,
-      undefined,
-      true
+      mapPinScale,
+      this.mapRenderOrder + 2
     );
-
-    this.userPin.screenTransform.scale = new vec3(mapPinScale.x, mapPinScale.y, 1.0);
-
-    this.pinOffsetter.bindScreenTransformToLocation(
-      this.userPin.screenTransform,
-      location.longitude,
-      location.latitude
-    );
-
-    this.pinOffsetter.layoutScreenTransforms(this.gridView);
   }
 
   setMapScrolling(value: boolean): void {
@@ -723,7 +713,16 @@ export class MapController extends BaseScriptComponent {
       this.mapModule,
       this.referencePositionLocationAsset
     );
-    
+
+    this.pinFactory = new PinFactory(
+      this.mapParameters.mapPinPrefab,
+      this.mapGridObject,
+      this.mapPinsAnchor.layer,
+      this.mapRenderOrder,
+      this.pinOffsetter,
+      this.gridView
+    );
+
     this.gridView.handleUpdateConfig(this.config);
     this.gridView.layoutCells(true);
     
@@ -804,7 +803,16 @@ export class MapController extends BaseScriptComponent {
       this.mapModule,
       this.referencePositionLocationAsset
     );
-    
+
+    this.pinFactory = new PinFactory(
+      this.mapParameters.mapPinPrefab,
+      this.mapGridObject,
+      this.mapPinsAnchor.layer,
+      this.mapRenderOrder,
+      this.pinOffsetter,
+      this.gridView
+    );
+
     this.gridView.handleUpdateConfig(this.config);
     this.gridView.layoutCells(true);
     
@@ -941,74 +949,66 @@ export class MapController extends BaseScriptComponent {
 
   showNearbyPlaces(category: string[]): void {
     log.i(`showNearbyPlaces called with categories: ${category}`);
-    
+
     if (!this.placesProvider) {
       log.e("PlacesProvider is not assigned! Please assign it in the inspector.");
       this.onNearbyPlacesFailedEvent.invoke();
       return;
     }
-    
-    if (!this.mapLocation) {
-      log.e("Map location is not available");
-      this.onNearbyPlacesFailedEvent.invoke();
-      return;
-    }
-    
-    if (!this.userLocation) {
-      log.w("User location is not available, using map location instead");
-    }
-    
-    const searchLocation = this.userLocation || this.mapLocation;
-    log.i(`Searching near: lat=${searchLocation.latitude}, lon=${searchLocation.longitude}, range=${NEARBY_PLACES_RANGE}m`);
 
-    this.placesProvider
-      .getNearbyPlaces(searchLocation, NEARBY_PLACES_RANGE, category)
-      .then((places) => {
-        log.i(`Found ${places.length} places`);
-        
-        if (places.length === 0) {
-          log.w("No nearby places found");
+    this.fetchLocationAsync()
+      .then((searchLocation) => {
+        if (!searchLocation) {
+          throw new Error("User location is unavailable");
+        }
+
+        log.i(
+          `Searching around user location: lat=${searchLocation.latitude}, lon=${searchLocation.longitude}`
+        );
+
+        return this.placesProvider.getNearbyPlacesInfo(
+          searchLocation,
+          20,
+          NEARBY_PLACES_RANGE,
+          category
+        );
+      })
+      .then((placesInfo: PlaceInfo[]) => {
+        const nearbyPlaces = placesInfo.filter((place) => {
+          const distance = getPhysicalDistanceBetweenLocations(
+            this.userLocation,
+            place.centroid
+          );
+          return distance <= NEARBY_PLACES_RANGE;
+        });
+
+        log.i(
+          `Got ${placesInfo.length} places, ${nearbyPlaces.length} within ${NEARBY_PLACES_RANGE}m`
+        );
+
+        if (nearbyPlaces.length === 0) {
+          log.w("No nearby places found inside distance threshold");
           this.onNoNearbyPlacesFoundEvent.invoke();
           return;
         }
 
-        const placeString: string = places
-          .map((place) => `${place.name}`)
-          .join(", ");
-        log.i("Places found: " + placeString);
+        let addedCount = 0;
+        for (let i = 0; i < nearbyPlaces.length; i++) {
+          if (!this.pinnedPlaceSet.has(nearbyPlaces[i].placeId)) {
+            this.createMapPin(nearbyPlaces[i].centroid, nearbyPlaces[i]);
+            this.pinnedPlaceSet.add(nearbyPlaces[i].placeId);
+            addedCount++;
+          }
+        }
 
-        this.placesProvider
-          .getPlacesInfo(places)
-          .then((placesInfo: PlaceInfo[]) => {
-            log.i(`Got detailed info for ${placesInfo.length} places`);
-            
-            let addedCount = 0;
-            for (let i = 0; i < placesInfo.length; i++) {
-              if (!this.pinnedPlaceSet.has(placesInfo[i].placeId)) {
-                log.i(`Adding pin for: ${placesInfo[i].name}`);
-                this.createMapPin(placesInfo[i].centroid, placesInfo[i]);
-                this.pinnedPlaceSet.add(placesInfo[i].placeId);
-                addedCount++;
-              } else {
-                log.i(`Place already pinned: ${placesInfo[i].name}`);
-              }
-            }
-            
-            log.i(`Successfully added ${addedCount} new place pins`);
+        log.i(`Successfully added ${addedCount} new place pins`);
 
-            // Integrate AI: Ask AI about the places found
-            if (this.aiAssistant && placesInfo.length > 0) {
-              log.i("Requesting AI analysis of nearby places...");
-              this.aiAssistant.askAboutPlaces(placesInfo);
-            }
-          })
-          .catch((error) => {
-            log.e(`Failed to get places info: ${error}`);
-            this.onNearbyPlacesFailedEvent.invoke();
-          });
+        if (this.aiAssistant) {
+          this.aiAssistant.askAboutPlaces(nearbyPlaces);
+        }
       })
       .catch((error) => {
-        log.e(`Failed to get nearby places: ${error}`);
+        log.e(`Failed to load nearby places: ${error}`);
         this.onNearbyPlacesFailedEvent.invoke();
       });
   }
