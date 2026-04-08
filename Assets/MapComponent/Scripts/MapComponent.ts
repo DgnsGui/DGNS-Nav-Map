@@ -254,7 +254,7 @@ export class MapComponent extends BaseScriptComponent {
     // CORRECTION: Toujours recharger les lieux basés sur la position actuelle
     // au lieu de réutiliser les anciennes données en cache
     print("Opening Places Clam - forcing refresh from current location");
-    const categories = categoryName || ["restaurant", "cafe", "bar"];
+    const categories = categoryName || [""];
     this.loadNearbyPlaces(categories);
   }
 
